@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Base\Interfaces\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Habitix.Core\Habitix.Core.csproj" />
+    <ProjectReference Include="..\Habitix.Data\Habitix.Data.csproj" />
+  </ItemGroup>
+
+</Project>
