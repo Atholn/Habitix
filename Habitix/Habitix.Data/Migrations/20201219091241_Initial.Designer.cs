@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Habitix.Data.Migrations
 {
     [DbContext(typeof(BaseContext))]
-    [Migration("20201219083535_Init")]
-    partial class Init
+    [Migration("20201219091241_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -30,6 +30,9 @@ namespace Habitix.Data.Migrations
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<int>("Frequency")
+                        .HasColumnType("int");
 
                     b.Property<string>("HabitDescription")
                         .HasColumnType("nvarchar(max)");

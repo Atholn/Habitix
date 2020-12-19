@@ -10,7 +10,5 @@ namespace Habitix.Data.Models
         public string LastName { get; set; }
         
         public virtual List <Habit> Habits { get; set; }
-
-
     }
 }

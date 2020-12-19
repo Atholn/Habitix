@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Habitix.Data.Migrations
 {
-    public partial class Init : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -33,6 +33,7 @@ namespace Habitix.Data.Migrations
                     HabitDescription = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     StartDateHabit = table.Column<DateTime>(type: "datetime2", nullable: false),
                     HabitixUserId = table.Column<long>(type: "bigint", nullable: false),
+                    Frequency = table.Column<int>(type: "int", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
