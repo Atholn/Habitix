@@ -6,6 +6,11 @@
 
   <ItemGroup>
     <Folder Include="Base\Interfaces\" />
+    <Folder Include="Mappers\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="10.1.1" />
   </ItemGroup>
 
   <ItemGroup>

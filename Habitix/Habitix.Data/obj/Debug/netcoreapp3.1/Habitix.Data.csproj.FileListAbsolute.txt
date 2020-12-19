@@ -1,0 +1,4 @@
+C:\Moje\Programowanie\WEB\Apka\Habitix\Habitix\Habitix.Data\bin\Debug\netcoreapp3.1\Habitix.Core.dll
+C:\Moje\Programowanie\WEB\Apka\Habitix\Habitix\Habitix.Data\obj\Debug\netcoreapp3.1\Habitix.Data.csprojAssemblyReference.cache
+C:\Moje\Programowanie\WEB\Apka\Habitix\Habitix\Habitix.Data\obj\Debug\netcoreapp3.1\Habitix.Data.AssemblyInfoInputs.cache
+C:\Moje\Programowanie\WEB\Apka\Habitix\Habitix\Habitix.Data\obj\Debug\netcoreapp3.1\Habitix.Data.AssemblyInfo.cs

@@ -8,7 +8,7 @@ namespace Habitix.Data.Models
     {
         public string HabitName { get; set;  }
         public string HabitDescription { get; set;  }
-        public DateTime StartDAteHabit { get; set; }
+        public DateTime StartDateHabit { get; set; }
 
         public virtual List <HabitDate> HabitDates { get; set; }
 
