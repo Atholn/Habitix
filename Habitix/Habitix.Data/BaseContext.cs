@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Habitix.Data
 {
-   public  class BaseContext
+    public  class BaseContext
     {
     }
 }
