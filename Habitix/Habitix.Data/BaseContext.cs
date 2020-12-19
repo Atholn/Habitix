@@ -15,8 +15,9 @@ namespace Habitix.Data
         public BaseContext (DbContextOptions options ):base (options)
         {
             var temp = Database;
+         //   Database.Migrate();
             Database.EnsureCreated();
-            Database.Migrate();
+           
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -30,8 +31,6 @@ namespace Habitix.Data
                 .WithOne(hd => hd.Habit);
 
         }
-
-
 
     }
 }
