@@ -6,7 +6,6 @@
 
   <ItemGroup>
     <Folder Include="Base\Interfaces\" />
-    <Folder Include="Mappers\" />
   </ItemGroup>
 
   <ItemGroup>

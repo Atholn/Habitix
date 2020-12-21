@@ -8,8 +8,5 @@ namespace Habitix.Data.Models
     {
         public virtual Habit Habit { get; set; }
         public long HabitId { get; set; }
-
-        public long CompanyId { get; set; }
-
     }
 }
