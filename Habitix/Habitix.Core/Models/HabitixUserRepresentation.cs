@@ -8,9 +8,6 @@ namespace Habitix.Core.Models
     {
         public string Name { get; set; }
         public string LastName { get; set; }
-
-        public virtual List<HabitRepresentation> Habits { get; set; }
-
-
+        //public virtual List<HabitRepresentation> Habits { get; set; }
     }
 }

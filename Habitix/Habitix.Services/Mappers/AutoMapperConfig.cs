@@ -18,9 +18,7 @@ namespace Habitix.Services.Mappers
             cfg.CreateMap<HabitixUserRepresentation, HabitixUser>();
 
             cfg.CreateMap<HabitDate, HabitDateRepresentation>();
-            cfg.CreateMap<HabitDateRepresentation, HabitDate>();
-           
-
+            cfg.CreateMap<HabitDateRepresentation, HabitDate>();         
         }).CreateMapper();
 
     }

@@ -1,4 +1,10 @@
+using AutoMapper;
 using Habitix.Data;
+using Habitix.Data.Repositories;
+using Habitix.Data.Repositories.Interfaces;
+using Habitix.Services.Base;
+using Habitix.Services.Base.Interfaces;
+using Habitix.Services.Mappers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -32,6 +38,17 @@ namespace Habitix.Api
             {
                 o.UseSqlServer(Configuration["ConnectionStrings:SqlConnectionString"]);
             });
+
+            services.AddScoped<IHabitixUserRepository, HabitixUserRepository>()
+                    .AddScoped<IHabitixUserService, HabitixUserService>();
+
+            var mappingConfig = new MapperConfiguration(mc =>
+            {
+                mc.AddProfile(new HabitixProfile());
+            });
+
+            IMapper mapper = mappingConfig.CreateMapper();
+            services.AddSingleton(mapper);
 
             services.AddControllers();
             services.AddSwaggerGen(c =>

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Habitix.Core.Models;
+using Habitix.Data.Models;
 using Habitix.Data.Repositories.Interfaces;
 using Habitix.Services.Base.Interfaces;
 using System;
@@ -19,17 +20,33 @@ namespace Habitix.Services.Base
             _habitixUserRepository = habitixUserRepository;
             _mapper = mapper;
         }
-        public long Create(HabitixUserRepresentation habitixUserRepresentation)
+
+        public async Task<HabitixUserRepresentation> Create(HabitixUserRepresentation habitixUserRepresentation)
         {
-            throw new NotImplementedException();
+            if (habitixUserRepresentation == null)
+            {
+                throw new Exception("User is null!");
+            }
+
+            HabitixUser habitixUser = _mapper.Map<HabitixUser>(habitixUserRepresentation);
+            _habitixUserRepository.Insert(habitixUser);
+
+            return new HabitixUserRepresentation
+            {
+                Name = habitixUser.Name,
+                LastName = habitixUser.LastName,
+                //Habits = _mapper.Map<List<HabitRepresentation>> (habitixUser.Habits)
+            };
         }
 
-        public Task<HabitixUserRepresentation> Get(long id)
+        public async Task<HabitixUserRepresentation> Get(long id)
         {
+            var habitixUser = _habitixUserRepository.GetHabitixUser(id);
+
             return await Task.Run(() =>
-           {
-               return 
-           });
+            {
+               return habitixUser?.Id == id ? _mapper.Map<HabitixUserRepresentation>(habitixUser) : null;
+            });
         }
     }
 }
