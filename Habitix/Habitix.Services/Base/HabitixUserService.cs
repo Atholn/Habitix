@@ -48,5 +48,13 @@ namespace Habitix.Services.Base
                return habitixUser?.Id == id ? _mapper.Map<HabitixUserRepresentation>(habitixUser) : null;
             });
         }
+
+        public async Task<IEnumerable<HabitixUserRepresentation>> GetList()
+        {
+            return await Task.Run(() =>
+            {
+                return _mapper.Map<IEnumerable<HabitixUserRepresentation>>(_habitixUserRepository.GetAll());
+            });
+        }
     }
 }

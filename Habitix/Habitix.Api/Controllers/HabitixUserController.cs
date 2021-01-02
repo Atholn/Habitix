@@ -30,8 +30,14 @@ namespace Habitix.Api.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<HabitixUserRepresentation>> Get(long id) => Ok(await _habitixUserService.Get(id));
 
-      //  [HttpGet]
-       // public async Task<ActionResult<IEnumerable<HabitixUserRepresentation>>> GetList() => Ok(await _habitixUserService.GetList());
+        //[HttpDelete("{id}")]
+        //public async Task<ActionResult> DeleteUser(long id)
+        //{
+        //    var result = await _habitixUserService.
+        //}
+
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<HabitixUserRepresentation>>> GetList() => Ok(await _habitixUserService.GetList());
 
     }
 }
