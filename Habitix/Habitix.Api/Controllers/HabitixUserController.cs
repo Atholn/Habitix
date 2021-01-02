@@ -39,5 +39,12 @@ namespace Habitix.Api.Controllers
             _habitixUserService.Delete(id);
             return Ok();
         }
+
+        [HttpPut("{id}")]
+        public async Task<ActionResult<HabitixUserRepresentation>> Update([FromBody] HabitixUserRepresentation request, long id)
+        {
+            var result = await _habitixUserService.Update(request, id);
+            return Ok(result);
+        }
     }
 }

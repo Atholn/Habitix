@@ -66,5 +66,32 @@ namespace Habitix.Services.Base
                 return _mapper.Map<IEnumerable<HabitixUserRepresentation>>(_habitixUserRepository.GetAll());
             });
         }
+
+        public async Task<HabitixUserRepresentation> Update(HabitixUserRepresentation request, long Id)
+        {
+            var user = _habitixUserRepository.Get(Id);
+            if(user==null)
+            {
+                throw new Exception($"There is no User with this ID");
+            }
+
+            user.UpdatedAt = DateTime.Now;
+
+            if (user.Name != request.Name)
+                user.Name = request.Name;
+
+            if (user.LastName != request.LastName)
+                user.LastName = request.LastName;
+
+            return await Task.Run(() =>
+            {
+                _habitixUserRepository.Update(user);
+                return new HabitixUserRepresentation
+                {
+                    Name = user.Name,
+                    LastName = user.LastName
+                };
+            });
+        }
     }
 }

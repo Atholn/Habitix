@@ -55,7 +55,6 @@ namespace Habitix.Data.Repositories
         }
         #endregion
 
-
         public BaseContext GetContext()
         {
             return context;
