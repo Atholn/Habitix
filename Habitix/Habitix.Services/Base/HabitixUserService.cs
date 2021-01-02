@@ -39,6 +39,16 @@ namespace Habitix.Services.Base
             };
         }
 
+        public void Delete(long id)
+        {
+            var user = _habitixUserRepository.Get(id);
+            if(user == null)
+            {
+                throw new Exception($"There is no User with this ID");
+            }
+            _habitixUserRepository.Delete(user);
+        }
+
         public async Task<HabitixUserRepresentation> Get(long id)
         {
             var habitixUser = _habitixUserRepository.GetHabitixUser(id);

@@ -11,7 +11,7 @@ namespace Habitix.Services.Base.Interfaces
         Task<HabitixUserRepresentation> Create(HabitixUserRepresentation habitixUserRepresentation);
         Task<HabitixUserRepresentation> Get(long id);
         Task<IEnumerable<HabitixUserRepresentation>> GetList();
-      //  Task<ProductDeleteResponse> Delete(long id, long companyId);
-      //  Task<ProductUpdateResponse> Update(ProductCreateRequest request, long productId, long companyId);
+        public void  Delete(long id);
+        //  Task<HabitixUserRepresentation> Update(ProductCreateRequest request, long productId, long companyId);
     }
 }
