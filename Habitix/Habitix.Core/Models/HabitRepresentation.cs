@@ -11,7 +11,6 @@ namespace Habitix.Core.Models
         public DateTime StartDateHabit { get; set; }
 
         public long HabitixUserId { get; set; }
-
-        //public virtual List<HabitDateRepresentation> HabitDates { get; set; }
+        public virtual List<HabitDateRepresentation> HabitDates { get; set; }
     }
 }

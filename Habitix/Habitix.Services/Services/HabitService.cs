@@ -21,6 +21,11 @@ namespace Habitix.Services.Services
 
         public void Create(HabitRepresentation habitRepresentation)
         {
+            if(_habitRepository.Get(habitRepresentation.HabitixUserId) == null)
+            {
+                throw new Exception($"there is no user");
+            }
+
             if(habitRepresentation == null)
             {
                 throw new Exception($"No habit");
