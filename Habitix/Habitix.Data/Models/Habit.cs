@@ -13,8 +13,6 @@ namespace Habitix.Data.Models
         public virtual List<HabitDate> HabitDates { get; set; }
 
         public virtual HabitixUser HabitixUser { get; set; }
-        public long HabitixUserId { get; set; }
-
-        
+        public long HabitixUserId { get; set; }       
     }
 }

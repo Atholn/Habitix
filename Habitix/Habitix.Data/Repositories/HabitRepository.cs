@@ -15,7 +15,7 @@ namespace Habitix.Data.Repositories
 
         }
 
-        public IEnumerable<Habit> GetListByUserId(long id)
+        public IEnumerable<Habit> GetAllByUserId(long id)
         {
             return  context.Habits
                     .Include(h => h.HabitixUserId == id)

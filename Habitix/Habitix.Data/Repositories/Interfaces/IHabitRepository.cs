@@ -7,6 +7,6 @@ namespace Habitix.Data.Repositories.Interfaces
 {
     public interface IHabitRepository : IBaseRepository<Habit>
     {
-        IEnumerable<Habit> GetListByUserId(long id);
+        IEnumerable<Habit> GetAllByUserId(long id);
     }
 }
