@@ -8,11 +8,13 @@ C:\Moje\Programowanie\WEB\Apka\Habitix\Habitix\Habitix.Api\bin\Debug\net5.0\Habi
 C:\Moje\Programowanie\WEB\Apka\Habitix\Habitix\Habitix.Api\bin\Debug\net5.0\ref\Habitix.Api.dll
 C:\Moje\Programowanie\WEB\Apka\Habitix\Habitix\Habitix.Api\bin\Debug\net5.0\Habitix.Api.pdb
 C:\Moje\Programowanie\WEB\Apka\Habitix\Habitix\Habitix.Api\bin\Debug\net5.0\AutoMapper.dll
+C:\Moje\Programowanie\WEB\Apka\Habitix\Habitix\Habitix.Api\bin\Debug\net5.0\Humanizer.dll
 C:\Moje\Programowanie\WEB\Apka\Habitix\Habitix\Habitix.Api\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 C:\Moje\Programowanie\WEB\Apka\Habitix\Habitix\Habitix.Api\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.OpenIdConnect.dll
 C:\Moje\Programowanie\WEB\Apka\Habitix\Habitix\Habitix.Api\bin\Debug\net5.0\Microsoft.Data.SqlClient.dll
 C:\Moje\Programowanie\WEB\Apka\Habitix\Habitix\Habitix.Api\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.dll
 C:\Moje\Programowanie\WEB\Apka\Habitix\Habitix\Habitix.Api\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Moje\Programowanie\WEB\Apka\Habitix\Habitix\Habitix.Api\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Design.dll
 C:\Moje\Programowanie\WEB\Apka\Habitix\Habitix\Habitix.Api\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Relational.dll
 C:\Moje\Programowanie\WEB\Apka\Habitix\Habitix\Habitix.Api\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.SqlServer.dll
 C:\Moje\Programowanie\WEB\Apka\Habitix\Habitix\Habitix.Api\bin\Debug\net5.0\Microsoft.Extensions.DependencyInjection.dll
@@ -64,5 +66,3 @@ C:\Moje\Programowanie\WEB\Apka\Habitix\Habitix\Habitix.Api\obj\Debug\net5.0\Habi
 C:\Moje\Programowanie\WEB\Apka\Habitix\Habitix\Habitix.Api\obj\Debug\net5.0\ref\Habitix.Api.dll
 C:\Moje\Programowanie\WEB\Apka\Habitix\Habitix\Habitix.Api\obj\Debug\net5.0\Habitix.Api.pdb
 C:\Moje\Programowanie\WEB\Apka\Habitix\Habitix\Habitix.Api\obj\Debug\net5.0\Habitix.Api.genruntimeconfig.cache
-C:\Moje\Programowanie\WEB\Apka\Habitix\Habitix\Habitix.Api\bin\Debug\net5.0\Humanizer.dll
-C:\Moje\Programowanie\WEB\Apka\Habitix\Habitix\Habitix.Api\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Design.dll
