@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Habitix.Services.Base
+namespace Habitix.Services.Services
 {
     public class HabitixUserService : IHabitixUserService
     {

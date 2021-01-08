@@ -10,6 +10,8 @@ namespace Habitix.Core.Models
         public string HabitDescription { get; set; }
         public DateTime StartDateHabit { get; set; }
 
-        public virtual List<HabitDateRepresentation> HabitDates { get; set; }
+        public long HabitixUserId { get; set; }
+
+        //public virtual List<HabitDateRepresentation> HabitDates { get; set; }
     }
 }

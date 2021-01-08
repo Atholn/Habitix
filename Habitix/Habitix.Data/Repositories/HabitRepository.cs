@@ -15,12 +15,11 @@ namespace Habitix.Data.Repositories
 
         }
 
-        public IEnumerable<Habit> GetAllByUserId(long id)
+        public List<Habit> GetAllByUserId(long id)
         {
             return  context.Habits
-                    .Include(h => h.HabitixUserId == id)
-                    .AsEnumerable();
-             
+                    .Where(h => h.HabitixUserId == id)
+                    .ToList();            
         }
     }
 }

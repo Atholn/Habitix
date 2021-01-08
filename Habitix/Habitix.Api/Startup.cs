@@ -2,9 +2,9 @@ using AutoMapper;
 using Habitix.Data;
 using Habitix.Data.Repositories;
 using Habitix.Data.Repositories.Interfaces;
-using Habitix.Services.Base;
 using Habitix.Services.Base.Interfaces;
 using Habitix.Services.Mappers;
+using Habitix.Services.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -40,7 +40,9 @@ namespace Habitix.Api
             });
 
             services.AddScoped<IHabitixUserRepository, HabitixUserRepository>()
-                    .AddScoped<IHabitixUserService, HabitixUserService>();
+                    .AddScoped<IHabitixUserService, HabitixUserService>()
+                    .AddScoped<IHabitRepository, HabitRepository>()
+                    .AddScoped<IHabitService, HabitService>();
 
             var mappingConfig = new MapperConfiguration(mc =>
             {
