@@ -12,7 +12,7 @@ namespace Habitix.Services.Services
     public class HabitService : IHabitService
     {
         private readonly IHabitRepository _habitRepository;
-        private readonly IMapper _mapper;
+        private readonly IMapper _mapper; 
         public HabitService(IHabitRepository habitService, IMapper mapper)
         {
             _habitRepository = habitService;
