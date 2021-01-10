@@ -1,12 +1,13 @@
 ﻿using Habitix.Data.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Habitix.Data
 {
-    public  class BaseContext : DbContext
+    public  class BaseContext : IdentityDbContext<User>
     {
         public DbSet<HabitixUser> HabitixUsers { get; set; }
         public DbSet<Habit> Habits { get; set; }
@@ -20,6 +21,7 @@ namespace Habitix.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<HabitixUser>()
                 .HasMany(hs => hs.Habits)
                 .WithOne(h => h.HabitixUser);
