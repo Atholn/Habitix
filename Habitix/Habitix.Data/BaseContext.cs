@@ -27,8 +27,6 @@ namespace Habitix.Data
             modelBuilder.Entity<Habit>()
                 .HasMany(h => h.HabitDates)
                 .WithOne(hd => hd.Habit);
-
         }
-
     }
 }

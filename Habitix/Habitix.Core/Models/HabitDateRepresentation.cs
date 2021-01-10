@@ -7,6 +7,5 @@ namespace Habitix.Core.Models
    public class HabitDateRepresentation
     {
        public DateTime InstanceData{ get; set; }
-
     }
 }
