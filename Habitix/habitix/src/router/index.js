@@ -14,7 +14,6 @@ const routes = [
         path: "/",
         name: "Dashboard",
         component: Dashboard,
-
     }
 ];
 
