@@ -2,7 +2,8 @@
   <div class="home">
     <v-toolbar dark>
       <h1 class="orange--text">habitix </h1>
-   
+      <router-link to="/habitix"> Habitix </router-link>
+          <router-view />
     </v-toolbar>
     <v-container fluid fill-height>
       habitix

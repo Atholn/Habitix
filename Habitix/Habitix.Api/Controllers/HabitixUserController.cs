@@ -32,7 +32,6 @@ namespace Habitix.Api.Controllers
         public async Task<ActionResult<HabitixUserRepresentation>> Get(long id) => Ok(await _habitixUserService.Get(id));
 
         [HttpGet]
-        [Authorize]
         public async Task<ActionResult<IEnumerable<HabitixUserRepresentation>>> GetList() => Ok(await _habitixUserService.GetList());
 
         [HttpDelete("{id}")]

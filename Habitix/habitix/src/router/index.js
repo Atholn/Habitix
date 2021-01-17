@@ -3,6 +3,7 @@ import VueRouter from "vue-router";
 import Home from "../views/Home.vue"
 import Dashboard from "../components/Dashboard.vue"
 import Profile from "../views/Profile.vue"
+import Habitix from "../views/Habitix.vue"
 
 Vue.use(VueRouter);
 const routes = [
@@ -20,7 +21,14 @@ const routes = [
         path: "/profile",
         name: "Profile",
         component: Profile,
-    }
+    },
+    {
+        path: "/habitix",
+        name: "Habitix",
+        component: Habitix,
+    },
+
+    
 ];
 
 
