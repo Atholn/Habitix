@@ -1,19 +1,17 @@
 <template>
+
   <div class="habitix">
-    
-    <p>
-      For a guide and recipes on how to configure / customize this project,<br>
-      check out the
-      <a href="https://cli.vuejs.org" target="_blank" rel="noopener">vue-cli documentation</a>.
-    </p>
+   
+    <div class="left">
+      Habitix
+    </div>
+  
 
-
+  <div>
+<h3> 
     <ul v-for="( user , id) in Users" :key="`${id}`">  <br>{{user.id}} {{user.name}} {{user.lastName}}  <br></ul>
-
-
- 
-    <h3>Installed CLI Plugins</h3>
-    
+ </h3>
+ </div>
   </div>
 </template>
 
@@ -28,7 +26,6 @@ export default {
   {
         return {
       Users: [],
-      fruits: ['apple', 'banana', 'orange'],
     };
   },
 
@@ -58,8 +55,18 @@ methods: {
 </script>
 
 <style scoped>
+.left
+{
+  background-color: chocolate;
+  size: 50%;
+
+}
+.habitix
+{
+  background-color: chartreuse;
+}
 h3 {
-  margin: 40px 0 0;
+  margin-left: 100px ;
 }
 ul {
   list-style-type: none;
@@ -72,4 +79,5 @@ li {
 a {
   color: #42b983;
 }
+
 </style>
