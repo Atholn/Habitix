@@ -1,14 +1,11 @@
 <template>
-    <div id="profile">
-        <h3> My Profile </h3>
-           @{{ user.username }} - {{ fullName }}
-           <strong>Followers: </strong> {{ followers }}
-           <button @click="followUser">
-               Follow
-           </button>
-           <div>
-               sadas
-           </div>
+    <div class="user-profile">
+        <div class ="user-profile__user-panel">
+            <h1 class="user-profile__username">@{{ user.username }}</h1>
+            <div class="user-profile__follower-count">
+                <strong>Followers: </strong>{{ followers }}
+            </div>
+        </div>
     </div>
 </template>
 
