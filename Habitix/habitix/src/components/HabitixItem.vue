@@ -1,6 +1,14 @@
 <template>
-    <div class="habitix-item">
-        <div class="user-profile__habitix">
+    <div class="habitix-item" @click="favoriteMessage(message.id)">
+        <div class="user-profile__habitix_pro" v-if="message.id == favoriteMessageId">
+            <div class="habitix-item__user">
+                @{{ username }}
+            </div>
+            <div class="habitix-item_content">
+                {{ message.content }}
+            </div>
+        </div>
+        <div v-else class="user-profile__habitix">
             <div class="habitix-item__user">
                 @{{ username }}
             </div>
@@ -14,6 +22,11 @@
 <script>
 export default {
     name: "HabitixItem",
+    data() {
+        return {
+        favoriteMessageId: 0,
+        }
+    },
     props: {
         username: {
             type: String,
@@ -23,7 +36,14 @@ export default {
             type: Object,
             required: true,
         }
+    },
+    methods: {
+        favoriteMessage(id) {
+            this.$emit('favorite', id);
+            this.favoriteMessageId = id;
+        }
     }
+
 };
 </script>
 
@@ -37,13 +57,20 @@ export default {
         cursor: pointer;
         transition: all 0.25s ease;
     }
+    .user-profile__habitix_pro {
+        background-color: tomato;
+
+    }
+
     
     .habitix-item:hover{
         transform: scale(1.1, 1.1);
     }
+
     .habitix-item_content{
         margin-top: 5px;
     }
+
     .habitix-item__user {
         font-weight: bold;
     }

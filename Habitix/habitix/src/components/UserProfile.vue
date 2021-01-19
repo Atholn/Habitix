@@ -8,11 +8,33 @@
             <div class="user-profile__follower-count">
                 <strong>Followers: </strong>{{ followers }}
             </div>
-                <button @click="adminChange()"> ChangeRole </button>
+               <form class="user-profile__create-message" @submit.prevent="createNewMessage">
+               <label for="newMessage"><strong> New messege</strong></label>
+               <textarea id="newMessege" rows="4" v-model="newMessageContent"/>
+
+               <div class="user-profile__create-message-type">
+                   <label for="newMessageType"><strong>Type: </strong></label>
+                   <select id="newMessageType" v-model="selectetMessageType">
+                       <option :value="option.value" v-for="(option, index) in messageTypes" :key="index">
+                           {{ option.name }}
+                       </option>
+                   </select>
+               </div>
+               <button>
+                   Send!
+               </button>
+            </form> 
         </div>
         <div class ="user-profile__messeges-wrapper"> 
                 <!-- {{user.twoots[0]}} -->
-                <HabitixItem  v-for="item in user.messeges " :key="item.id" :username="user.username" :message="item"/> 
+                <HabitixItem  
+                    v-for="item in user.messeges " 
+                    :key="item.id" 
+                    :username="user.username" 
+                    :message="item" 
+                    @favorite="toggleFavorite"
+                                   
+                /> 
                 
         </div>
     </div>
@@ -26,6 +48,13 @@ export default {
     name: "Profile",
     data() {
         return {
+            newMessageContent: '',
+            selectetMessageType: 'instant',
+
+            messageTypes: [
+                { value: 'draft', name: 'Draft'},
+                { value: 'instant', name: 'Instant Mess'} 
+            ],
             isLoading: false,
             followers: 0,
             user: {
@@ -60,6 +89,19 @@ export default {
         },
         adminChange() {
             this.user.isAdmin = false;
+        },
+        toggleFavorite(id) {
+            console.log(`Favourited mess #${id}`);
+        },
+        createNewMessage() {
+            if (this.newMessageContent && this.messageTypes !== 'draft') {
+                this.user.messeges.unshift({
+                    id: this.user.messeges.length +1,
+                    content: this.newMessageContent,
+                })
+                this.newMessageContent = '';
+            }
+
         }
     },
 
@@ -100,4 +142,16 @@ export default {
     h1 {
         margin: 0;
     }
+    .user-profile__messeges-wrapper {
+        display: grid;
+        grid-gap: 10px;
+    }
+
+    .user-profile__create-message {
+       
+        padding-top: 20px;
+        display: flex;
+        flex-direction: column;
+    }
+
 </style>
