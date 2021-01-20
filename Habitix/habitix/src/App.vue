@@ -1,11 +1,21 @@
 <template>
   <v-app>
     <v-main>
-      <div id="nav">
+      <nav>
+      <div class="navigation__logo">    
+        Habitix
+         </div>
+
+         <div class="navigation__user">    
+        Habitix
+         </div>
+      </nav>
+      <!-- <div id="nav">
         <router-link to="/">Home </router-link>
         <router-link to="/profile">Profile </router-link>             
-      </div>
+      </div> -->
       <router-view/>
+     
     </v-main>
       <img alt="Vue logo" src="./assets/logo.png">
   </v-app>
@@ -21,6 +31,12 @@ export default {
   })
 };
 </script>
+
+<style>
+ .navigation__logo {
+   background-color: blue;
+ }
+</style>
 
 
 

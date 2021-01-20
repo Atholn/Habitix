@@ -1,6 +1,6 @@
 <template>
     <div class="habitix-item" @click="favoriteMessage(message.id)">
-        <div class="user-profile__habitix_pro" v-if="message.id == favoriteMessageId">
+        <div class="user-profile__habitix_pro"  v-if="message.id == favoriteMessageId" >
             <div class="habitix-item__user">
                 @{{ username }}
             </div>
@@ -47,7 +47,7 @@ export default {
 };
 </script>
 
-<style>
+<style lang ="scss" scoped>
     .habitix-item {
         padding: 20px;
         background-color: white;
@@ -56,22 +56,23 @@ export default {
         box-sizing: border-box;
         cursor: pointer;
         transition: all 0.25s ease;
+
+
+        &:hover{
+             transform: scale(1.1, 1.1);
+         }
+        .habitix-item__user {
+             font-weight: bold;
+         }
+
     }
+
     .user-profile__habitix_pro {
         background-color: tomato;
 
     }
 
-    
-    .habitix-item:hover{
-        transform: scale(1.1, 1.1);
-    }
-
     .habitix-item_content{
         margin-top: 5px;
-    }
-
-    .habitix-item__user {
-        font-weight: bold;
     }
 </style>

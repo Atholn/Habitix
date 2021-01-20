@@ -8,8 +8,8 @@
             <div class="user-profile__follower-count">
                 <strong>Followers: </strong>{{ followers }}
             </div>
-               <form class="user-profile__create-message" @submit.prevent="createNewMessage">
-               <label for="newMessage"><strong> New messege</strong></label>
+               <form class="user-profile__create-message" @submit.prevent="createNewMessage" :class="{ '--exceeded': newMessageCharacterCount > 180}">
+               <label for="newMessage"><strong> New messege</strong> ({{ newMessageCharacterCount}}/300)</label>
                <textarea id="newMessege" rows="4" v-model="newMessageContent"/>
 
                <div class="user-profile__create-message-type">
@@ -79,8 +79,8 @@ export default {
         }
     },
     computed: {
-        fullName() {
-            return `${this.user.firstName} ${this.user.lastName}`;
+        newMessageCharacterCount() {
+            return this.newMessageContent.length;
         }
     },
     methods: {
@@ -112,15 +112,14 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
     .user-profile {
         display: grid;
         grid-template-columns: 1fr 3fr;
         width: 100%;
         padding: 50px 5%;
-    }
 
-    .user-profile__user-panel {
+     .user-profile__user-panel {
         display: flex;
         flex-direction: column;
         margin-right: 50px;
@@ -128,30 +127,40 @@ export default {
         background-color: white;
         border-radius: 5px;
         border: 1px solid #DFE3E8;
-    }  
+        
+        h1 {
+            margin: 0;
+        }
 
-    .user-profile_admin-badge{
-        background-color: blue;
-        color:white;
-        border-radius: 5px;
-        margin-right: auto;
-        padding: 0 10px;
-        font-weight: bold;
-    }
+        .user-profile_admin-badge{
+            background-color: blue;
+            color:white;
+            border-radius: 5px;
+            margin-right: auto;
+            padding: 0 10px;
+            font-weight: bold;
+        }
 
-    h1 {
-        margin: 0;
-    }
-    .user-profile__messeges-wrapper {
-        display: grid;
-        grid-gap: 10px;
-    }
+        .user-profile__create-message { 
+            padding-top: 20px;
+            display: flex;
+            flex-direction: column;
 
-    .user-profile__create-message {
-       
-        padding-top: 20px;
-        display: flex;
-        flex-direction: column;
-    }
+            &.--exceeded{
+                color: red;
+                border-color: red;
 
+                button {
+                    background-color: red;
+                    border: none;
+                }
+            }
+          }
+        }  
+
+        .user-profile__messeges-wrapper {
+            display: grid;
+            grid-gap: 10px;
+        }
+    }
 </style>
