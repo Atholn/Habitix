@@ -153,6 +153,7 @@ export default {
                 button {
                     background-color: red;
                     border: none;
+                    color: white;
                 }
             }
           }
