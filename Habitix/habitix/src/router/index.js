@@ -4,10 +4,15 @@ import Home from "../views/Home.vue"
 import Dashboard from "../components/Dashboard.vue"
 import Profile from "../views/Profile.vue"
 import Habitix from "../views/Habitix.vue"
-import Login from "../views/Login.vue"
-import Register from "../views/Register.vue"
+//  import login from "../components/Auth/Login.vue"
+// import axios from 'axios'
+// import RegisterPage from "../register/RegisterPage.vue"
+
 
 Vue.use(VueRouter);
+
+
+
 const routes = [
     {
       path: "/",
@@ -29,22 +34,24 @@ const routes = [
         name: "Habitix",
         component: Habitix,
     },
-    {
-        path: "/login",
-        name: "Login",
-        component: Login,
-    },
-    {
-        path: "/Register",
-        name: "Register",
-        component: Register
-    } 
-];
+    // {
+    //     path: "/login",
+    //     name: "Login",
+    //     component: login,
+    // },
+    // {
+    //     path: "/Register",
+    //     name: "Register",
+    //     component: RegisterPage,
+    // }, 
 
+       // otherwise redirect to home
+    { path: '*', redirect: '/' }
+];
 
 const router = new VueRouter({
     routes
   });
   
-  export default router;
+export default router;
   

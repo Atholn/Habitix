@@ -17,6 +17,7 @@
       <router-view/>
      
     </v-main>
+    
       <img alt="Vue logo" src="./assets/logo.png">
   </v-app>
       
