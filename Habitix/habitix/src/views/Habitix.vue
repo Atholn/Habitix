@@ -3,7 +3,7 @@
   <div class="habitix">
    
     <div class="left">
-      Habitix
+      Habitix asdddddddd
     </div>
   
 

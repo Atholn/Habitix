@@ -1,11 +1,11 @@
 <template>
   <div class="home">
     <v-toolbar dark>
-      <h1 class="orange--text">habitix </h1>
-      <router-link to="/habitix"> Habitix </router-link>
-          <router-view />
+      <h1 class="orange--text">habitixs </h1>
+      <router-link to="habitix"> Habitixx </router-link>
+         
     </v-toolbar>
-    <v-container fluid fill-height>
+  <v-container fluid fill-height>
       habitix
     </v-container>
   </div>
@@ -26,10 +26,6 @@ export default {
   }
 };
 </script>
-
-<style lang="scss" >
-
-</style>
 
 
 

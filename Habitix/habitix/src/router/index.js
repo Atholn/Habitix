@@ -1,17 +1,12 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Home from "../views/Home.vue"
-import Dashboard from "../components/Dashboard.vue"
-import Profile from "../views/Profile.vue"
-import Habitix from "../views/Habitix.vue"
-//  import login from "../components/Auth/Login.vue"
-// import axios from 'axios'
-// import RegisterPage from "../register/RegisterPage.vue"
-
+import Home from "../views/Home.vue";
+import Dashboard from "../components/Dashboard.vue";
+import Profile from "../views/Profile.vue";
+import Habitix from "../views/Habitix.vue";
+import Login from "../views/Login.vue";
 
 Vue.use(VueRouter);
-
-
 
 const routes = [
     {
@@ -20,7 +15,7 @@ const routes = [
       component: Home,
     },
     {
-        path: "/",
+        path: "/dashboard",
         name: "Dashboard",
         component: Dashboard,
     },
@@ -34,18 +29,18 @@ const routes = [
         name: "Habitix",
         component: Habitix,
     },
-    // {
-    //     path: "/login",
-    //     name: "Login",
-    //     component: login,
-    // },
+    {
+        path: "/login",
+        name: "Login",
+        component: Login,
+    },
     // {
     //     path: "/Register",
     //     name: "Register",
     //     component: RegisterPage,
     // }, 
 
-       // otherwise redirect to home
+    // otherwise redirect to home
     { path: '*', redirect: '/' }
 ];
 
