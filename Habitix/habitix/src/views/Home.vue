@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <v-toolbar dark>
-      <h1 class="orange--text">habitixs </h1>
+      <h1 class="blue--text">habitixs </h1>
       <router-link to="habitix"> Habitixx </router-link>
          
     </v-toolbar>

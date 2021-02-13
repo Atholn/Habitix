@@ -24,7 +24,7 @@ const actions = {
             // The Promise used for router redirect in login
             commit(AUTH_REQUEST);
             axios({
-                url: `${process.env.VUE_APP_BASE_URL_API}/User/login`,
+                url: `https://localhost:44312/api/User/login`,
                 data: user,
                 method: 'POST',
             })

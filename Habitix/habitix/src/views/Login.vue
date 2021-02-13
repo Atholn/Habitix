@@ -3,25 +3,25 @@
         <div class="login-container">
         <v-row align="center" justify="center">
         <v-col cols="12" md="4">
-            <v-card dark>
+            <v-card >
             <v-card-text>
                 <v-form>
+                 <h2 class="naglowek"> Login </h2>
+
                 <v-row justify="center">
                     <v-col cols="12" md="9">
+                    UserName
                     <v-text-field
                         name="name"
-                        label="Login"
-                        hint="At least 8 characters"
-                        min="8"
+                        min="3"
                         outlined
                         required
                         v-model="username"
                     />
+                    Password
                     <v-text-field
                         name="name"
-                        label="Password"
-                        hint="At least 8 characters"
-                        min="8"
+                        min="5"
                         type="password"
                         outlined
                         required
@@ -31,7 +31,7 @@
                 </v-row>
                 <v-card-actions>
                     <v-btn
-                    color="orange darken-3"
+                    color="blue"
                     to="Register"
                     :loading="loading"
                     text
@@ -48,16 +48,16 @@
                     large
                     >
                     Back
-                    <v-icon>mdi-exit</v-icon>
+                    
                     </v-btn>
                     <v-btn
-                    color="indigo darken-1"
+                    color="indigo"
                     @click="Login()"
                     :loading="loading"
                     large
                     >
                     Login
-                    <v-icon>mdi-login</v-icon>
+
                     </v-btn>
                 </v-card-actions>
                 </v-form>
@@ -66,14 +66,11 @@
         </v-col>
         </v-row>
         </div>
-            
+           
         <div>
           <div>
           TestTest <br>
           If you dont have account, create it! 
-            <v-checkbox
-                    label="Do you read and accept our terms of service"
-                  />
           </div>
           <div>
                       <v-btn
@@ -93,20 +90,7 @@
 
 <script>
 import { AUTH_REQUEST } from "../store/actions/auth";
-import Vue from 'vue'
-import {
-  Vuetify,
-  VApp,
-  VNavigationDrawer,
-  VFooter,
-  VList,
-  VBtn,
-  VIcon,
-  VGrid,
-  VToolbar,
-  VCard,
-  transitions
-} from 'vuetify'
+
 
 export default {
      name: 'Login',
@@ -122,8 +106,10 @@ export default {
     },
      methods: {
     Login() {
+      console.log("hakuna");
       const { username, password } = this;
       this.$store.dispatch(AUTH_REQUEST, { username, password }).then(() => {
+        
         this.$router.push("/dashboard/");
       });
     },
@@ -142,4 +128,5 @@ export default {
   height: 100vh;
   display: flex;
 }
+
 </style>
