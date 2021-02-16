@@ -25,5 +25,4 @@ export default {
          min-height: 100vh;
         background-color: #F3F3FA;    
     }
-  
 </style>

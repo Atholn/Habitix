@@ -1,14 +1,10 @@
 <template>
-
-  <div class="habitix">
-   
-    <div class="left">
-      Habitix asdddddddd
+<div>
+  <div id="Habitix">
+        <habitix/>
     </div>
-  
-
   <div>
-<h3> 
+  <h3> 
     <ul v-for="( user , id) in Users" :key="`${id}`">  <br>{{user.id}} {{user.name}} {{user.lastName}}  <br></ul>
  </h3>
  </div>
@@ -18,6 +14,7 @@
 
 <script>
 export default {
+
   name: 'Habitix',
   props: {
     msg: String
@@ -46,14 +43,10 @@ methods: {
           console.error(err);
         });       
   },
-
   }
-
-}
-;
+};
 
 </script>
-
 <style scoped>
 .left
 {
@@ -79,5 +72,4 @@ li {
 a {
   color: #42b983;
 }
-
 </style>
