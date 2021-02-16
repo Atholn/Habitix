@@ -1,7 +1,7 @@
 <template>
 <div>
   <div id="Habitix">
-        <habitix/>
+        <user-habitix/>
     </div>
   <div>
   <h3> 
@@ -13,14 +13,15 @@
 
 
 <script>
+import UserHabitix from '../components/UserHabitix';
+
 export default {
 
   name: 'Habitix',
   props: {
     msg: String
   },
-  data ()
-  {
+  data (){
         return {
       Users: [],
     };
@@ -29,7 +30,9 @@ export default {
 mounted() {
   this.getUsers();
 },
-
+components: {
+        UserHabitix
+    },
 methods: {
   getUsers() {
       this.Users = [];     
