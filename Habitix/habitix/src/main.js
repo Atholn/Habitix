@@ -4,7 +4,7 @@ import router from "./router/index.js";
 import store from "./store";
 import axios from "./plugins/axios"
 import vuetify from "./plugins/vuetify";
-
+import Unicon from 'vue-unicons'
 
 Vue.config.productionTip = false
 
@@ -13,5 +13,6 @@ new Vue({
   store,
   vuetify,
   axios,
+  Unicon,
   render: h => h(App)
 }).$mount('#app')

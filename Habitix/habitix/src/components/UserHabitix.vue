@@ -23,6 +23,18 @@
                <v-btn>
                    Send!
                </v-btn>
+               <v-btn
+                 color="primary"
+  depressed
+  elevation="2"
+  fab
+  icon
+  medium
+  outlined
+>
+      <v-icon>
+        mdi-plus
+      </v-icon></v-btn>
             </form> 
         </div>
 

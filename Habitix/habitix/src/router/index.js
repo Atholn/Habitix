@@ -2,7 +2,7 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 import Dashboard from "../components/Dashboard.vue";
-import Profile from "../views/Profile.vue";
+import Profile from "../views/Test/Profile.vue";
 import Habitix from "../views/Habitix.vue";
 import Login from "../views/Login.vue";
 import Register from "../views/Register.vue";
