@@ -27,9 +27,6 @@
 
 <script>
 import UserHabitix from '../components/UserHabitix';
-import Unicon from 'vue-unicons'
-
-
 
 export default {
 
