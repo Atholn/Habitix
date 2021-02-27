@@ -5,7 +5,7 @@ import store from "./store";
 import axios from "./plugins/axios"
 import vuetify from "./plugins/vuetify";
 import Unicon from 'vue-unicons';
-import { uniAirplay } from './icons.js'
+import { uniAirplay } from 'vue-unicons/src/icons'
 
 Vue.config.productionTip = false
 

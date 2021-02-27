@@ -1,18 +1,7 @@
 <template>
 <div>
-  <nav> <v-btn
-  elevation="24"
-  fab
-><v-icon> mdi-access-point </v-icon></v-btn>
-<unicon name="uniAirplay" fill="deeppink" icon-style="monochrome" />
-<unicon name="uniAirplay" fill="royalblue" />
-
-<v-icon aria-hidden="false">
-  mdi-account
-</v-icon>
 
 
-</nav>
   <div id="habitixx">
         <user-habitix/>
     </div>

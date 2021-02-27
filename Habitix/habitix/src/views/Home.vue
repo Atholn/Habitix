@@ -1,10 +1,23 @@
 <template>
   <div class="home">
-    <v-toolbar dark>
-      <h1 class="blue--text">habitixs </h1>
-      <router-link to="habitix"> Habitixx </router-link>
-         
-    </v-toolbar>
+      <nav> 
+        <v-btn 
+        elevation="24"
+        to="Home" 
+        :loading="loading"
+        >
+          <v-icon>mdi-home</v-icon>
+        </v-btn>
+        <v-btn 
+        elevation="24"
+        to="habitix" 
+        :loading="loading"
+        >
+          <v-icon>mdi-widgets</v-icon>
+        </v-btn>
+      </nav>
+
+
   <v-container fluid fill-height>
       habitix
     </v-container>
