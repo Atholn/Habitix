@@ -13,7 +13,7 @@ namespace Habitix.Data
         public DbSet<Habit> Habits { get; set; }
         public DbSet<HabitDate> HabitsDates { get; set; }
 
-        public BaseContext (DbContextOptions options ):base (options)
+        public BaseContext (DbContextOptions options):base (options)
         {
             var temp = Database;
             Database.Migrate();          

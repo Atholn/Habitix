@@ -1,4 +1,5 @@
 <template>
+ 
     <div class="habitix-item" @click="favoriteMessage(message.id)">
         <div class="user-profile__habitix_pro"  v-if="message.id == favoriteMessageId" >
             <div class="habitix-item__user">
@@ -15,8 +16,12 @@
             <div class="habitix-item_content">
                 {{ message.content }}
             </div>
+            <div class="habitix-item_content">     
+
+    </div>
         </div>
     </div>
+
 </template>
 
 <script>

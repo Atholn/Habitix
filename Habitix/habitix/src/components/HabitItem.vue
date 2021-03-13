@@ -7,14 +7,28 @@
             <div class="habitix-item_content">
                 {{ habit.habitName }}
             </div>
+                                             <v-checkbox
+              v-model="ex4"
+              label="yellow"
+              color="yellow"
+              value="yellow"
+              hide-details
+            />
         </div>
-        <div v-else class="user-profile__habitix">
+        <div v-else class="user-profile__habitix" >
             <div class="habitix-item__user">
-               {{ habit.habitDescription }}
+               {{ habit.habitDescriptsion }}
             </div>
             <div class="habitix-item_content">
                 {{ habit.habitName }}
             </div>
+                                 <v-checkbox
+              v-model="ex4"
+              label="yellow"
+              color="yellow"
+              value="yellow"
+              hide-details
+            />
         </div>
     </div>
 </template>
@@ -40,7 +54,10 @@ export default {
     methods: {
         favoriteMessage(id) {
             this.$emit('favorite', id);
+            
             this.favoriteMessageId = id;
+
+
         }
     }
 

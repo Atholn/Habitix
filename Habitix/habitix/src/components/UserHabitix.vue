@@ -1,4 +1,6 @@
 <template>
+    <v-container fluid>
+     
     <div class="user-habitix">
         <div class ="user-habitix__user-panel">
             <h1 class="user-habitix__username">@{{ user.username }}</h1>
@@ -8,48 +10,21 @@
             <div class="user-habitix__follower-count">
                 <strong>Followers: </strong>{{ followers }}
             </div>
-               <form class="user-habitix__create-message" @submit.prevent="createNewMessage" :class="{ '--exceeded': newMessageCharacterCount > 300}">
-               <label for="newMessage"><strong> New messege</strong> ({{ newMessageCharacterCount}}/300)</label>
-               <textarea id="newMessege" rows="4" v-model="newMessageContent"/>
-
-               <div class="user-habitix__create-message-type">
-                   <label for="newMessageType"><strong>Type: </strong></label>
-                   <select id="newMessageType" v-model="selectetMessageType">
-                       <option :value="option.value" v-for="(option, index) in messageTypes" :key="index">
-                           {{ option.name }}
-                       </option>
-                   </select>
-               </div>
-               <v-btn>
-                   Send!
-               </v-btn>
-               <v-btn
-                 color="primary"
-  depressed
-  elevation="2"
-  fab
-  icon
-  medium
-  outlined
->
-      <v-icon>
-        mdi-plus
-      </v-icon></v-btn>
-            </form> 
         </div>
 
-        <div class ="user-habitix__messeges-wrapper"> 
+        <div class ="user-habitix__messeges-wrapper "> 
                 <HabitItem  
                     v-for="item in hab" 
                     :key="item.id"                   
                     :habit="item" 
-                    @favorite="toggleFavorite"   
+                    
                 />             
+                 <!-- @favorite="toggleFavorite"   -->
                 <!--                               -->
         </div>
-        
     {{ hab }}
     </div>
+     </v-container>
 </template>
 
 <script>
@@ -119,20 +94,20 @@ export default {
 
         },
          getHab() {
-      this.hab = [];     
-      this.$axios
-        .get(`https://localhost:44312/api/controller/userId?userId=2`)
-        .then((res) => {
-          this.hab = res.data;
-          console.log(res.data);
-        })
-        .catch((err) => {
-          console.error(err);
-        });       
-    }, },      
-    mounted() {
-        this.followUser();
-        this.getHab();
+            this.hab = [];     
+            this.$axios
+                .get(`https://localhost:44312/api/controller/userId?userId=1`)
+                .then((res) => {
+                this.hab = res.data;
+                console.log(res.data);
+                })
+                .catch((err) => {
+                console.error(err);
+                });       
+            }, },      
+            mounted() {
+                this.followUser();
+                this.getHab();
     },
 }
 </script>

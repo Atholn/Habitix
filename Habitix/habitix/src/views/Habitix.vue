@@ -1,7 +1,5 @@
 <template>
 <div>
-
-
   <div id="habitixx">
         <user-habitix/>
     </div>
@@ -12,7 +10,6 @@
  </div>
   </div>
 </template>
-
 
 <script>
 import UserHabitix from '../components/UserHabitix';
