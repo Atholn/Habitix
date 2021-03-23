@@ -8,7 +8,7 @@
                 {{ habit.habitName }}
             </div>
                                              <v-checkbox
-              v-model="ex4"
+              
               label="yellow"
               color="yellow"
               value="yellow"
@@ -23,7 +23,7 @@
                 {{ habit.habitName }}
             </div>
                                  <v-checkbox
-              v-model="ex4"
+
               label="yellow"
               color="yellow"
               value="yellow"
@@ -42,10 +42,7 @@ export default {
         }
     },
     props: {
-        username: {
-            type: String,
-            required: true
-        },
+        
         habit: {
             type: Object,
             required: true,

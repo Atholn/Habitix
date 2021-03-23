@@ -5,7 +5,7 @@
     </div>
   <div>
   <h3> 
-    <ul v-for="( user , id) in Users" :key="`${id}`">  <br>{{user.id}} {{user.name}} {{user.lastName}}  <br></ul>
+    <ul v-for="( user , id) in Users" :key="`${id}`">   <br> </ul>
  </h3>
  </div>
   </div>

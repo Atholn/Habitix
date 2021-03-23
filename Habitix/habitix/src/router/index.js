@@ -7,6 +7,7 @@ import Habitix from "../views/Habitix.vue";
 import Login from "../views/Login.vue";
 import Register from "../views/Register.vue";
 import store from "../store/index"
+import CreateNewAccount from "../views/CreateNewAccount.vue";
 
 const ifNotAuthenticated = (to, from, next) => {
     if (!store.getters.isAuthenticated) {
@@ -57,6 +58,11 @@ const routes = [
         name: "Register",
         component: Register,
     }, 
+    {
+      path: "/CreateNewAccount",
+      name: "CreateNewAccount",
+      component: CreateNewAccount,
+  },
 
     // otherwise redirect to home
     { path: '*', redirect: '/' }
