@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-namespace Habitix.Core.Models.JWTModels
+namespace Habitix.Services.Models.JWTModels
 {
     public class LoginRequest : BaseResponse
     {

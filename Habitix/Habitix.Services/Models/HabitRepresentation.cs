@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Habitix.Core.Models
+namespace Habitix.Services.Models
 {
     public class HabitRepresentation
     {

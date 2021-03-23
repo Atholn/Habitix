@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Habitix.Core.Models.JWTModels
+namespace Habitix.Services.Models.JWTModels
 {
     public class LoginResponse : BaseResponse
     {

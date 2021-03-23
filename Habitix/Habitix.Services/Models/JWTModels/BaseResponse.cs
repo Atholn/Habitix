@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Text.Json.Serialization;
 
-namespace Habitix.Core.Models.JWTModels
+namespace Habitix.Services.Models.JWTModels
 {
     public class BaseResponse
     {

@@ -3,13 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30717.126
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Habitix.Api", "Habitix.Api\Habitix.Api.csproj", "{65692CF3-7E82-4CCB-B2A6-92B20977897C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Habitix.Api", "Habitix.Api\Habitix.Api.csproj", "{65692CF3-7E82-4CCB-B2A6-92B20977897C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Habitix.Core", "Habitix.Core\Habitix.Core.csproj", "{193E9D8A-DD1C-4B92-A2A5-8EBE1790B2AA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Habitix.Data", "Habitix.Data\Habitix.Data.csproj", "{334572A1-6485-450C-8B7A-147A778D4FFD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Habitix.Data", "Habitix.Data\Habitix.Data.csproj", "{334572A1-6485-450C-8B7A-147A778D4FFD}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Habitix.Services", "Habitix.Services\Habitix.Services.csproj", "{46DE567B-7823-43AF-B22D-B2DB246A8264}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Habitix.Services", "Habitix.Services\Habitix.Services.csproj", "{46DE567B-7823-43AF-B22D-B2DB246A8264}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,10 +19,6 @@ Global
 		{65692CF3-7E82-4CCB-B2A6-92B20977897C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{65692CF3-7E82-4CCB-B2A6-92B20977897C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{65692CF3-7E82-4CCB-B2A6-92B20977897C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{193E9D8A-DD1C-4B92-A2A5-8EBE1790B2AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{193E9D8A-DD1C-4B92-A2A5-8EBE1790B2AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{193E9D8A-DD1C-4B92-A2A5-8EBE1790B2AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{193E9D8A-DD1C-4B92-A2A5-8EBE1790B2AA}.Release|Any CPU.Build.0 = Release|Any CPU
 		{334572A1-6485-450C-8B7A-147A778D4FFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{334572A1-6485-450C-8B7A-147A778D4FFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{334572A1-6485-450C-8B7A-147A778D4FFD}.Release|Any CPU.ActiveCfg = Release|Any CPU

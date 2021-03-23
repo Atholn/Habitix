@@ -1,4 +1,4 @@
-﻿using Habitix.Core.Models.JWTModels;
+﻿using Habitix.Services.Models.JWTModels;
 using System;
 using System.Collections.Generic;
 using System.Text;

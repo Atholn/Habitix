@@ -1,4 +1,4 @@
-﻿using Habitix.Core.Models;
+﻿using Habitix.Services.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;

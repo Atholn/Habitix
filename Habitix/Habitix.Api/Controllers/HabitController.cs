@@ -1,4 +1,4 @@
-﻿using Habitix.Core.Models;
+﻿using Habitix.Services.Models;
 using Habitix.Services.Base.Interfaces;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;

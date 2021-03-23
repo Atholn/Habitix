@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Habitix.Core.Models;
+using Habitix.Services.Models;
 using Habitix.Data.Models;
 using Habitix.Data.Repositories.Interfaces;
 using Habitix.Services.Base.Interfaces;

@@ -10,8 +10,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Habitix.Core\Habitix.Core.csproj" />
     <ProjectReference Include="..\Habitix.Data\Habitix.Data.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Models\Enums\" />
   </ItemGroup>
 
 </Project>

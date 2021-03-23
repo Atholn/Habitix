@@ -1,4 +1,4 @@
-﻿using Habitix.Core.Models;
+﻿using Habitix.Services.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Habitix.Services.Base.Interfaces;

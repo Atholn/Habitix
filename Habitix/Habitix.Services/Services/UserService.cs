@@ -1,4 +1,4 @@
-﻿using Habitix.Core.Models.JWTModels;
+﻿using Habitix.Services.Models.JWTModels;
 using Habitix.Data.Models;
 using Habitix.Services.Services.Interfaces;
 using Habitix.Data.Repositories.Interfaces;
