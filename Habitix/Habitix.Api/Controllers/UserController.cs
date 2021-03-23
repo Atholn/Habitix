@@ -17,7 +17,6 @@ using System.Threading.Tasks;
 namespace Habitix.Api.Controllers
 {
     [Route("api/[controller]")]
-    [EnableCors]
     [ApiController]
     public class UserController : ControllerBase
     {

@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace Habitix.Api.Controllers
 {
@@ -22,6 +23,7 @@ namespace Habitix.Api.Controllers
         }
 
         [HttpPost]
+        [SwaggerOperation(Summary = "Create new HabitixUser")]
         public async Task<ActionResult> Create([FromBody] HabitixUserRepresentation request)
         {
             var result = await _habitixUserService.Create(request);
@@ -29,12 +31,15 @@ namespace Habitix.Api.Controllers
         }
 
         [HttpGet("{id}")]
+        [SwaggerOperation(Summary = "Retrieves a specific User by unique id")]
         public async Task<ActionResult<HabitixUserRepresentation>> Get(long id) => Ok(await _habitixUserService.Get(id));
 
         [HttpGet]
+        [SwaggerOperation(Summary = "Retrieves all Users")]
         public async Task<ActionResult<IEnumerable<HabitixUserRepresentation>>> GetList() => Ok(await _habitixUserService.GetList());
 
         [HttpDelete("{id}")]
+        [SwaggerOperation(Summary = "Delete User")]
         public async Task<ActionResult> DeleteUser(long id)
         {
             _habitixUserService.Delete(id);
@@ -42,6 +47,7 @@ namespace Habitix.Api.Controllers
         }
 
         [HttpPut("{id}")]
+        [SwaggerOperation(Summary = "Update User")]
         public async Task<ActionResult<HabitixUserRepresentation>> Update([FromBody] HabitixUserRepresentation request, long id)
         {
             var result = await _habitixUserService.Update(request, id);
