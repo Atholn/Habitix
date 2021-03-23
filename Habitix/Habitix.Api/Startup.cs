@@ -29,6 +29,7 @@ namespace Habitix.Api
 {
     public class Startup
     {
+        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -39,12 +40,18 @@ namespace Habitix.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddCors(o => o.AddPolicy("Development", builder =>
+            services.AddCors(o =>
             {
-                builder.AllowAnyOrigin()
-                       .AllowAnyMethod()
-                       .AllowAnyHeader();
-            }));
+                o.AddPolicy(MyAllowSpecificOrigins,
+                    builder =>
+                {
+                    builder.AllowAnyHeader()
+                           .AllowAnyMethod()
+                           .AllowCredentials()
+                           .WithOrigins("http://localhost:8080");
+                }
+                );
+            });
 
             services.AddDbContext<BaseContext>(o =>
             {
@@ -70,8 +77,8 @@ namespace Habitix.Api
                 {
                     ValidateAudience = true,
                     ValidateIssuer = true,
-                    ValidAudience = "Manage",
-                    ValidIssuer = "Manage",
+                    ValidAudience = "Habitix",
+                    ValidIssuer = "Habitix",
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Secret"]))
                 };
             });
@@ -135,7 +142,10 @@ namespace Habitix.Api
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Habitix.Api v1"));
+
             }
+
+
 
             app.UseHttpsRedirection();
 
@@ -143,6 +153,8 @@ namespace Habitix.Api
 
             app.UseAuthentication();
             app.UseAuthorization();
+            app.UseCors(MyAllowSpecificOrigins);
+
 
             app.UseEndpoints(endpoints =>
             {

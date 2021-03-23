@@ -1,5 +1,6 @@
 ﻿using Habitix.Core.Models;
 using Habitix.Services.Base.Interfaces;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -10,6 +11,7 @@ using System.Threading.Tasks;
 namespace Habitix.Api.Controllers
 {
     [Route("api/controller")]
+    [EnableCors]
     [ApiController]
     public class HabitController : ControllerBase
     {

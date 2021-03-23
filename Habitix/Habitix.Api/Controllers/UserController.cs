@@ -4,6 +4,7 @@ using Habitix.Data.Models;
 using Habitix.Data.Repositories.Interfaces;
 using Habitix.Services.Services;
 using Habitix.Services.Services.Interfaces;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -16,6 +17,7 @@ using System.Threading.Tasks;
 namespace Habitix.Api.Controllers
 {
     [Route("api/[controller]")]
+    [EnableCors]
     [ApiController]
     public class UserController : ControllerBase
     {
@@ -34,7 +36,7 @@ namespace Habitix.Api.Controllers
             userService = new UserService(userManager, roleManager, configuration, contextReturnable);            
         }
 
-        [HttpPost]
+        [HttpPost]    
         [Route("login")]
         public async Task<ActionResult<LoginResponse>> Login([FromBody] LoginRequest request)
         {
@@ -42,7 +44,7 @@ namespace Habitix.Api.Controllers
             return result.IsSuccessful ? Ok(result) : Unauthorized(result);
         }
 
-        [HttpPost]
+        [HttpPost]       
         [Route("register")]
         public async Task<ActionResult<RegisterResponse>> Register([FromBody] RegisterRequest request)
         {
