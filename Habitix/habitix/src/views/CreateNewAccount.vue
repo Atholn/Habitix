@@ -101,7 +101,7 @@ methods: {
         // });
         console.log("Register2!")
         this.$axios
-            .post(`http://localhost:44312/api/controller`, this.habit)
+            .post(`https://localhost:5001/api/controller`, this.habit)
             .then(res => {
                 this.$router.push("Login");
             })

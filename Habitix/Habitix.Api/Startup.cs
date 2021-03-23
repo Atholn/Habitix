@@ -142,9 +142,9 @@ namespace Habitix.Api
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Habitix.Api v1"));
-
+                app.UseCors(MyAllowSpecificOrigins);
             }
-
+            
 
 
             app.UseHttpsRedirection();
@@ -153,7 +153,7 @@ namespace Habitix.Api
 
             app.UseAuthentication();
             app.UseAuthorization();
-            app.UseCors(MyAllowSpecificOrigins);
+
 
 
             app.UseEndpoints(endpoints =>
