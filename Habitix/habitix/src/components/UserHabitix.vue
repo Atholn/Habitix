@@ -96,7 +96,7 @@ export default {
          getHab() {
             this.hab = [];     
             this.$axios
-                .get(`https://localhost:44312/api/controller/userId?userId=1`)
+                .get(`https://localhost:44312/api/Habit/userId?userId=1`)
                 .then((res) => {
                 this.hab = res.data;
                 console.log(res.data);

@@ -13,17 +13,6 @@
                     <v-col cols="12" md="9">
                     
                                     <v-text-field
-                                    name="email"
-                                    label="E-mail"
-                                    outlined
-                                    required
-                                    v-model="user.email"
-                                    />
-
-                                    <v-text-field label="Test" > </v-text-field>
-                                    
-
-                                    <v-text-field
                                     name="name"
                                     label="Login"
                                     hint="At least 8 characters"
@@ -49,13 +38,13 @@
                 
 
                     <v-btn
-                    @click="Register()"
+                    @click="Login()"
                     color="primary"
                     depressed
                     medium
                     outlined
                     small
-                    > Register!</v-btn>
+                    > Login!</v-btn>
                 </v-col>
                 </v-row>
         </div>
@@ -65,44 +54,32 @@
 
 <script>
 export default {
-     name: 'CreateNewAccount',
+     name: 'LoginToAccount',
     data() {
         return {
                 user: {            
             userName: "",
-            email: "",
             password: ""
       },
-       user1: {            
-            userName: "dup11a",
-            email: "dupa@gmail.com",
+      user1: {            
+            userName: "wafel",
             password: "qazwsx1Q!"
       },
-      habit : {
-          habitName: "nauka prog",
-            habitDescription: "Nauka programowania 30 k .NET ",
-  startDateHabit: "2021-01-22T19:36:26.101Z",
-  habitixUserId: 2,
-  habitDates: [
-    {
-      instanceData: "2021-03-22T19:36:26.102Z"
-    }]
-      }
     };
   },
 
 methods: {
-    Register() {
-        console.log("Register!")
+    Login() {
+        console.log("Login!")
         this.$axios
-            .post(`https://localhost:44381/api/Identity/RegisterUser`, this.user)
+            .post(`https://localhost:44381/api/Identity/Login`, this.user1)
             .then(res => {
                 this.$router.push("LoginToAccount");
             })
              .catch(err => {
           console.error(err);
         });
-        console.log("Register2!")
+        console.log("Login!")
         // this.$axios
         //     .post(`https://localhost:44312/api/Habit`, this.habit)
         //     .then(res => {
@@ -111,7 +88,7 @@ methods: {
         //      .catch(err => {
         //   console.error(err);
         // });
-console.log("Register3!")
+console.log("Login!")
 
     },
     

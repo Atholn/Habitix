@@ -8,7 +8,7 @@ import Login from "../views/Login.vue";
 import Register from "../views/Register.vue";
 import store from "../store/index"
 import CreateNewAccount from "../views/CreateNewAccount.vue";
-
+import LoginToAccount from "../views/LoginToAccount.vue"
 const ifNotAuthenticated = (to, from, next) => {
     if (!store.getters.isAuthenticated) {
       next();
@@ -62,7 +62,12 @@ const routes = [
       path: "/CreateNewAccount",
       name: "CreateNewAccount",
       component: CreateNewAccount,
-  },
+    },
+    {
+      path: "/LoginToAccount",
+      name: "LoginToAccount",
+      component: LoginToAccount,
+    },
 
     // otherwise redirect to home
     { path: '*', redirect: '/' }
