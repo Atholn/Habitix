@@ -9,6 +9,7 @@ import Register from "../views/Register.vue";
 import store from "../store/index"
 import CreateNewAccount from "../views/CreateNewAccount.vue";
 import LoginToAccount from "../views/LoginToAccount.vue"
+
 const ifNotAuthenticated = (to, from, next) => {
     if (!store.getters.isAuthenticated) {
       next();
@@ -22,7 +23,7 @@ const ifNotAuthenticated = (to, from, next) => {
       next();
       return;
     }
-    next('/login');
+    next('/LoginToAccount');
   };
 
 Vue.use(VueRouter);
@@ -37,6 +38,7 @@ const routes = [
         path: "/dashboard",
         name: "Dashboard",
         component: Dashboard,
+        beforeEnter: ifAuthenticated,
     },
     {
         path: "/profile",

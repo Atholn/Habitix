@@ -11,6 +11,8 @@ const state = {
     status: '',
 };
 
+
+
 const getters = {
     isAuthenticated: (state) => !!state.token,
     isAuthLoading: (state) => state.status == 'loading',
@@ -24,7 +26,7 @@ const actions = {
             // The Promise used for router redirect in login
             commit(AUTH_REQUEST);
             axios({
-                url: `${process.env.VUE_APP_BASE_URL_API}/User/login`,
+                url: `https://localhost:44381/api/Identity/Login`,
                 data: user,
                 method: 'POST',
             })
@@ -33,7 +35,7 @@ const actions = {
                     const refreshToken = resp.data.refreshToken;
                     localStorage.setItem('user-token', token);// store the token in localstorage
                     localStorage.setItem('user-refresh-token', refreshToken);//store refresh token in localstorage
-                    axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+                    axios.defaults.headers.common['Authorization'] = `${token}`;
                     commit(AUTH_SUCCESS, token);
                     // you have your token, now log in your user :)
                     //dispatch(USER_REQUEST)

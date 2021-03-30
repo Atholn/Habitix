@@ -19,7 +19,7 @@
                                     min="8"
                                     outlined
                                     required
-                                    v-model="user.userName"
+                                    v-model="userName"
                                     />
 
                                     <v-text-field
@@ -30,9 +30,17 @@
                                     type="password"
                                     outlined
                                     required
-                                    v-model="user.password"
+                                    v-model="password"
                                     />
                     </v-col>
+
+                      <v-btn 
+        elevation="24"
+        to="dashboard" 
+        
+        >
+          <v-icon>mdi-widgets</v-icon>
+        </v-btn>
                 </v-row>
 
                 
@@ -53,6 +61,10 @@
 
 
 <script>
+
+import { AUTH_REQUEST } from "@/store/actions/auth";
+
+
 export default {
      name: 'LoginToAccount',
     data() {
@@ -65,11 +77,35 @@ export default {
             userName: "wafel",
             password: "qazwsx1Q!"
       },
+      userName: "",
+      password: "",
     };
   },
-
+mounted() {
+  this.Login11();
+},
 methods: {
+    Login11() {
+      console.log(this.$store.getters.isAuthenticated)
+      },
+        
+    
     Login() {
+      const { userName, password } = this;
+      this.$store.dispatch(AUTH_REQUEST, { userName, password }).then(() => {
+        this.$router.push("/dashboard/");
+      });
+    },
+
+    clearFields() {
+      this.username = "";
+      this.password = "";
+    },
+
+
+
+
+    Login1() {
         console.log("Login!")
         this.$axios
             .post(`https://localhost:44381/api/Identity/Login`, this.user1)
@@ -88,9 +124,10 @@ methods: {
         //      .catch(err => {
         //   console.error(err);
         // });
-console.log("Login!")
+        console.log("Login!")
 
     },
+    
     
     }
 }
