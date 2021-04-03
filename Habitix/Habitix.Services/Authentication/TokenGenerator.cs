@@ -37,8 +37,8 @@ namespace Habitix.Services.Authentication
                 expires: DateTime.Now.AddHours(3),
                 claims: authClaims,
                 signingCredentials: new SigningCredentials(authSigningKey, SecurityAlgorithms.HmacSha256),
-                audience: "Manage",
-                issuer: "Manage"
+                audience: "Habitix",
+                issuer: "Habitix"
                 );
 
             return new JwtSecurityTokenHandler().WriteToken(token);

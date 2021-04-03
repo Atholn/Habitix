@@ -6,6 +6,7 @@ using Habitix.Services.Base.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Habitix.Services.Services
 {
@@ -19,11 +20,11 @@ namespace Habitix.Services.Services
             _mapper = mapper;
         }
 
-        public void Create(HabitRepresentation habitRepresentation)
+        public void Create(HabitRepresentation habitRepresentation, string userId)
         {
             if(_habitRepository.Get(habitRepresentation.HabitixUserId) != null)
             {
-                throw new Exception($"there is no user");
+                throw new Exception($"There is no user");
             }
 
             if(habitRepresentation == null)
@@ -31,7 +32,9 @@ namespace Habitix.Services.Services
                 throw new Exception($"No habit");
             }
 
+
             Habit habit = _mapper.Map<Habit>(habitRepresentation);
+            habit.UserId = userId;
             _habitRepository.Insert(habit);             
         }
 
@@ -56,6 +59,11 @@ namespace Habitix.Services.Services
             return _mapper.Map<List<HabitRepresentation>>(_habitRepository.GetAllByUserId(id));
         }
 
+        public List<HabitRepresentation> GetAllHabits()
+        {
+            return _mapper.Map<List<HabitRepresentation>>(_habitRepository.GetAll());
+        }
+
         public HabitRepresentation Update(HabitRepresentation habitRepresentation, long id)
         {
             var habit = _habitRepository.Get(id);
@@ -78,6 +86,22 @@ namespace Habitix.Services.Services
             _habitRepository.Update(habit);
 
             return _mapper.Map<HabitRepresentation>(habit);
+        }
+
+        public async Task<bool> UserOwnsHabitAsync(long postId, string userId)
+        {
+            var post = await _habitRepository.GetByIdAsync(postId);
+            if (post == null)
+            {
+                return false;
+            }
+
+            if (post.UserId != userId)
+            {
+                return false;
+            }
+
+            return true;
         }
     }
 }

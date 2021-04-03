@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace Habitix.Data.Models
@@ -11,6 +12,11 @@ namespace Habitix.Data.Models
         public DateTime StartDateHabit { get; set; }
 
         public virtual List<HabitDate> HabitDates { get; set; }
+
+        [Required]
+        [MaxLength(450)]
+        public string UserId { get; set; }
+
 
         public virtual HabitixUser HabitixUser { get; set; }
         public long HabitixUserId { get; set; }       

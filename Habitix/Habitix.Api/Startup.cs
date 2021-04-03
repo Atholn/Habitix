@@ -1,8 +1,10 @@
 using AutoMapper;
 using Habitix.Data;
+using Habitix.Data.Identity;
 using Habitix.Data.Models;
 using Habitix.Data.Repositories;
 using Habitix.Data.Repositories.Interfaces;
+using Habitix.Data.Services;
 using Habitix.Services.Base.Interfaces;
 using Habitix.Services.Mappers;
 using Habitix.Services.Services;
@@ -58,7 +60,7 @@ namespace Habitix.Api
                 o.UseSqlServer(Configuration["ConnectionStrings:SqlConnectionString"]);
             });
 
-            services.AddIdentity<User, IdentityRole>()
+            services.AddIdentity<ApplicationUser, IdentityRole>()
                .AddEntityFrameworkStores<BaseContext>()
                .AddDefaultTokenProviders();
 
@@ -68,18 +70,17 @@ namespace Habitix.Api
                 options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
                 options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
             })
-
             .AddJwtBearer(options =>
             {
-                options.SaveToken = true;
-                options.RequireHttpsMetadata = false;
+                //options.SaveToken = true;
+                //options.RequireHttpsMetadata = false;
                 options.TokenValidationParameters = new TokenValidationParameters()
                 {
-                    ValidateAudience = true,
-                    ValidateIssuer = true,
-                    ValidAudience = "Habitix",
-                    ValidIssuer = "Habitix",
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Secret"]))
+                    ValidateIssuer = false,
+                    ValidateAudience = false,                  
+                    //ValidAudience = "Habitix",
+                    //ValidIssuer = "Habitix",
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["JWT:Secret"]))
                 };
             });
 
@@ -100,38 +101,64 @@ namespace Habitix.Api
             services.AddSingleton(mapper);
 
             services.AddControllers();
+
+            services.AddAuthorization();
+
+            services.AddTransient<UserResloverService>();
+
             services.AddSwaggerGen(c =>
             {
                 c.EnableAnnotations();
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Habitix.Api", Version = "v1" });
-                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
-                {
-                    Description = @"JWT Authorization header using the Bearer scheme. \r\n\r\n 
-                      Enter 'Bearer' [space] and then your token in the text input below.
-                      \r\n\r\nExample: 'Bearer 12345abcdef'",
-                    Name = "Authorization",
-                    In = ParameterLocation.Header,
-                    Type = SecuritySchemeType.ApiKey,
-                    Scheme = "Bearer"
-                });
-                c.AddSecurityRequirement(new OpenApiSecurityRequirement()
-                {
-                    {
-                      new OpenApiSecurityScheme
-                      {
-                        Reference = new OpenApiReference
-                          {
-                            Type = ReferenceType.SecurityScheme,
-                            Id = "Bearer"
-                          },
-                          Scheme = "oauth2",
-                          Name = "Bearer",
-                          In = ParameterLocation.Header,
 
-                        },
-                        new List<string>()
+                var securityScheme = new OpenApiSecurityScheme
+                {
+                    Name = "JWT Authentication",
+                    Description = "EnterJWT Bearer token",
+                    In = ParameterLocation.Header,
+                    Type = SecuritySchemeType.Http,
+                    Scheme = "bearer",
+                    BearerFormat = "JWT",
+                    Reference = new OpenApiReference
+                    {
+                        Id = JwtBearerDefaults.AuthenticationScheme,
+                        Type = ReferenceType.SecurityScheme
                     }
+                };
+
+                c.AddSecurityDefinition(securityScheme.Reference.Id, securityScheme);
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                    {securityScheme, new string[] { } }
                 });
+                //c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                //{
+                //    Description = @"JWT Authorization header using the Bearer scheme. \r\n\r\n 
+                //      Enter 'Bearer' [space] and then your token in the text input below.
+                //      \r\n\r\nExample: 'Bearer 12345abcdef'",
+                //    Name = "Authorization",
+                //    In = ParameterLocation.Header,
+                //    Type = SecuritySchemeType.ApiKey,
+                //    Scheme = "Bearer"
+                //});
+                //c.AddSecurityRequirement(new OpenApiSecurityRequirement()
+                //{
+                //    {
+                //      new OpenApiSecurityScheme
+                //      {
+                //        Reference = new OpenApiReference
+                //          {
+                //            Type = ReferenceType.SecurityScheme,
+                //            Id = "Bearer"
+                //          },
+                //          Scheme = "oauth2",
+                //          Name = "Bearer",
+                //          In = ParameterLocation.Header,
+
+                //        },
+                //        new List<string>()
+                //    }
+                //});
             });
         }
 
@@ -146,22 +173,16 @@ namespace Habitix.Api
                 app.UseCors(MyAllowSpecificOrigins);
             }
             
-
-
             app.UseHttpsRedirection();
 
             app.UseRouting();
-
             app.UseAuthentication();
             app.UseAuthorization();
-
-
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
-
         }
     }
 }

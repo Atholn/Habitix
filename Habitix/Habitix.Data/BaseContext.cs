@@ -4,18 +4,22 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Habitix.Data.Identity;
+using Habitix.Data.Services;
 
 namespace Habitix.Data
 {
-    public  class BaseContext : IdentityDbContext<User>
+    public  class BaseContext : IdentityDbContext<ApplicationUser>
     {
         public DbSet<HabitixUser> HabitixUsers { get; set; }
         public DbSet<Habit> Habits { get; set; }
         public DbSet<HabitDate> HabitsDates { get; set; }
 
-        public BaseContext (DbContextOptions options):base (options)
+
+        private readonly UserResloverService _userResloverService;
+        public BaseContext (DbContextOptions<BaseContext> options, UserResloverService userResloverService):base (options)
         {
-            var temp = Database;
+            _userResloverService = userResloverService;
             Database.Migrate();          
         }
 

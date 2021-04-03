@@ -8,6 +8,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
+using Habitix.Api.Wrappers;
+using Habitix.Data.Identity;
 
 namespace Habitix.Api.Controllers
 {
@@ -22,19 +26,22 @@ namespace Habitix.Api.Controllers
             _habitService = habitService;
         }
 
-        [HttpPost]
-        [SwaggerOperation(Summary = "Create new habit")]
-        public ActionResult Create([FromBody] HabitRepresentation request)
+        [HttpGet]
+        [Authorize(Roles = UserRoles.Admin)]
+        [SwaggerOperation(Summary = "Retrieves all habits")]
+        public ActionResult<HabitRepresentation> GetAll()
         {
-            _habitService.Create(request);
-            if (!ModelState.IsValid)
+            var habits = _habitService.GetAllHabits();
+            if (habits == null)
             {
-                return BadRequest(ModelState);
+                return NotFound();
             }
-            return Created($"api/[controller]", Ok());
+            return Ok(habits);
         }
 
+
         [HttpGet("{id}")]
+        [Authorize(Roles = UserRoles.User)]
         [SwaggerOperation(Summary = "Retrieves a specific habit by unique id")]
         public ActionResult<HabitRepresentation> Get(long id)
         {
@@ -46,25 +53,25 @@ namespace Habitix.Api.Controllers
             return Ok(habit);
         }
 
-        [HttpGet("userId")]
+        [HttpGet("/UserId/{userId}")]
+        [Authorize(Roles = UserRoles.User)]
         [SwaggerOperation(Summary = "Retrieves a specific habit by User Id")]
         public ActionResult GetAllByUserId(long userId)
         {
             return Ok(_habitService.GetAllByUserId(userId));
         }
 
-        [HttpDelete("{id}")]
-        [SwaggerOperation(Summary = "Delete a existing habit")]
-        public ActionResult Delete(long id)
-        {
-            _habitService.Delete(id);
-            return NoContent();
-        }
-
         [HttpPut("{id}")]
+        [Authorize(Roles = UserRoles.User)]
         [SwaggerOperation(Summary = "Update a existing habit")]
-        public ActionResult Update([FromBody] HabitRepresentation habitRepresentation, long id)
+        public async Task<ActionResult> Update([FromBody] HabitRepresentation habitRepresentation, long id)
         {
+            var userOwnsHabit = await _habitService.UserOwnsHabitAsync(id, User.FindFirstValue(ClaimTypes.NameIdentifier));
+            if (!userOwnsHabit)
+            {
+                return BadRequest(new Response<bool>() { Succeeded = false, Message = "You do no own this habit." });
+            }
+
             _habitService.Update(habitRepresentation, id);
             if (!ModelState.IsValid)
             {
@@ -73,6 +80,35 @@ namespace Habitix.Api.Controllers
             return NoContent();
         }
 
+        [HttpPost]
+        //[AllowAnonymous]
+        [Authorize(Roles = UserRoles.User)]
+        [SwaggerOperation(Summary = "Create new habit")]
+        public ActionResult Create([FromBody] HabitRepresentation request)
+        {
+            _habitService.Create(request, User.FindFirstValue(ClaimTypes.NameIdentifier));
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            return Created($"api/[controller]", Ok());
+        }
 
+        [HttpDelete("{id}")]
+        [Authorize(Roles = UserRoles.AdminOrUser)]
+        [SwaggerOperation(Summary = "Delete a existing habit")]
+        public async Task<ActionResult> Delete(long id)
+        {
+            var userOwnsHabit = await _habitService.UserOwnsHabitAsync(id, User.FindFirstValue(ClaimTypes.NameIdentifier));
+            var isAdmin = User.IsInRole(UserRoles.Admin);
+
+            if (!isAdmin && !userOwnsHabit)
+            {
+                return BadRequest(new Response<bool>() { Succeeded = false, Message = "You do no own this habit." });
+            }
+
+            _habitService.Delete(id);
+            return NoContent();
+        }
     }
 }

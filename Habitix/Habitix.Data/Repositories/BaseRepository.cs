@@ -49,7 +49,7 @@ namespace Habitix.Data.Repositories
         {
             if (entity is null)
                 throw new ArgumentNullException($"Entity is null {nameof(entity)}");
-
+            entity.UpdatedAt = DateTime.UtcNow;
             context.Set<T>().Update(entity);
             context.SaveChanges();
         }
