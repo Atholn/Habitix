@@ -54,19 +54,19 @@ namespace Habitix.Api.Controllers
         }
 
         [HttpGet("/UserHabits")]
-        [Authorize(Roles = UserRoles.User)]
+        [Authorize]
         [SwaggerOperation(Summary = "Retrieves a specific habit by User Id")]
-        public ActionResult GetAllByUserId(long userId)
+        public async Task<ActionResult> GetAllByUserId()
         {
-            return Ok(_habitService.GetAllByUserId(userId));
+            return Ok(await _habitService.GetAllByUserId(User.FindFirstValue(ClaimTypes.NameIdentifier)));
         }
 
         [HttpGet("/UserId/{userId}")]
-        [Authorize(Roles = UserRoles.User)]
-        [SwaggerOperation(Summary = "Retrieves a specific habit by User Id")]
-        public ActionResult GetAllByUserId(long userId)
+        [Authorize]
+        [SwaggerOperation(Summary = "Retrieves a specific habit by HabitixUser Id")]
+        public ActionResult GetAllByHabitixUserId(long userId)
         {
-            return Ok(_habitService.GetAllByUserId(userId));
+            return Ok(_habitService.GetAllByHabitixUserId(userId));
         }
 
         [HttpPut("{id}")]
@@ -90,7 +90,8 @@ namespace Habitix.Api.Controllers
 
         [HttpPost]
         //[AllowAnonymous]
-        [Authorize(Roles = UserRoles.User)]
+        [Authorize]
+        //[Authorize(Roles = UserRoles.User)]
         [SwaggerOperation(Summary = "Create new habit")]
         public ActionResult Create([FromBody] HabitRepresentation request)
         {

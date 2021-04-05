@@ -54,9 +54,14 @@ namespace Habitix.Services.Services
             return _mapper.Map<HabitRepresentation>(habit);
         }
 
-        public List<HabitRepresentation> GetAllByUserId(long id)
+        public List<HabitRepresentation> GetAllByHabitixUserId(long id)
         {
-            return _mapper.Map<List<HabitRepresentation>>(_habitRepository.GetAllByUserId(id));
+            return _mapper.Map<List<HabitRepresentation>>(_habitRepository.GetAllByHabitixUserId(id));
+        }
+
+        public async Task<IEnumerable<HabitRepresentation>> GetAllByUserId(string id)
+        {
+            return _mapper.Map<List<HabitRepresentation>>(await _habitRepository.GetAllByUserIdAsync(id));
         }
 
         public List<HabitRepresentation> GetAllHabits()

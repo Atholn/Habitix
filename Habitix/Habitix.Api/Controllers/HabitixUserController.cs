@@ -28,6 +28,7 @@ namespace Habitix.Api.Controllers
         [SwaggerOperation(Summary = "Retrieves habitix user info")]
         public async Task<ActionResult> GetHabitixUserInfo()
         {
+
             return Ok(new UserInfo() { UserName = User.FindFirstValue(ClaimTypes.Name), UserRole = User.FindFirstValue(ClaimTypes.Role)});
         }
 

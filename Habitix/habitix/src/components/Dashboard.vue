@@ -38,34 +38,41 @@
         </div>
 
         <div class ="user-habit__messeges-wrapper "> 
+
+
+                    <div v-if="h ===[]"> 
+                Lista pusta !  </div>
+          <div v-else> 
                 <HabitItem  
-                    v-for="item in hab" 
+                    v-for="item in h" 
                     :key="item.id"                   
-                    :habit="item" 
-                    
-                />             
+                    :habit="item"                 
+                /> </div>
+
+
                  <!-- @favorite="toggleFavorite"   -->
                 <!--                               -->
         </div>
-    {{ hab }}
-    </div>
+        {{ h }}
+
+        <CreateNewHabit/>
+         </div>
+      
      </v-container>
 
 
   </div>
-  
-  
-  
   </div>   
 </template>
 
 
 <script>
-import { AUTH_REQUEST } from '../store/actions/auth';
+import { AUTH_LOGOUT } from '../store/actions/auth';
 import HabitItem from './HabitItem.vue';
+import CreateNewHabit from './CreateNewHabit.vue';
 
 export default {
-  components: { HabitItem },
+  components: { HabitItem , CreateNewHabit},
   name: 'Dashboard',
 
     data() {
@@ -129,18 +136,19 @@ export default {
            if(oldFollowerCount  < newFollowerCunt) {
                console.log(`${this.user.username} has gainted a follower!`)
            } 
-        }
+        },
+
     },
     computed: {
         newMessageCharacterCount() {
             return this.newMessageContent.length;
-        }
+        },
+       
     },
 
   mounted() {
      this.getHabits();
       this.followUser();
-      this.getHab();
                 ///----
                 this.getHabitixUserInfo();
   },
@@ -150,14 +158,14 @@ export default {
       console.log(this.$store.getters.isAuthenticated)
       },
     logout() {
-      this.$store.dispatch(AUTH_REQUEST);
+      this.$store.dispatch(AUTH_LOGOUT);
        this.$router.push("Login");
     },
      getHabits() {
 
             this.h = [];     
             this.$axios
-                .get(`https://localhost:44312/UserId/2`
+                .get(`https://localhost:44312/UserHabits`
                 , {                  
                       headers: {
 
@@ -168,8 +176,6 @@ export default {
                     })
                 .then((res) => {
                 
-                // console.log(res.data);
-
                 this.h = res.data;
                 // console.info(res.data); 
                 console.info(this.$store.getters.authStatus);
@@ -200,31 +206,13 @@ export default {
                 this.newMessageContent = '';
             }
         },
-         getHab() {
-            this.hab = [];     
-            this.$axios
-                .get(`https://localhost:44312/UserId/2`, {                  
-                      headers: {
-
-                          "Content-Type": "application/json",
-                         // Authorization: `${localStorage.getItem('user-token')}`
-                          'Authorization': 'Bearer ' + localStorage.getItem('user-token'),
-                      }
-                    })
-                .then((res) => {
-                this.hab = res.data;
-                console.log(res.data);
-                })
-                .catch((err) => {
-                console.error(err);
-                });       
-            },
 
             //--------------
             getHabitixUserInfo() {
 
                 this.$axios   
-                .get(`https://localhost:44312/api/HabitixUser/UserInfo`, {                  
+                .get(`https://localhost:44312/api/HabitixUser/UserInfo`, {        
+
                       headers: {
                           "Content-Type": "application/json",
                          // Authorization: `${localStorage.getItem('user-token')}`
@@ -233,6 +221,7 @@ export default {
                     })
                 .then((res) => {
                 this.habitixUserInfo = res.data;
+
                 })
                 .catch((err) => {
                 console.error(err);
