@@ -18,21 +18,21 @@ namespace Habitix.Data.Repositories
 
         public List<Habit> GetAllByUserId(long id)
         {
-            return  context.Habits
+            return  _context.Habits
                     .Where(h => h.HabitixUserId == id)
                     .ToList();            
         }
 
         public async Task<IEnumerable<Habit>> GetByUserIdAsync(string id)
         {
-            return await context.Habits
+            return await _context.Habits
                   .Where(x => x.UserId.Contains(id))
                   .ToListAsync();
         }
 
         public async Task<Habit> GetByIdAsync(long id)
         {
-            return await context.Habits.SingleOrDefaultAsync(x => x.Id == id);
+            return await _context.Habits.SingleOrDefaultAsync(x => x.Id == id);
         }
     }
 }

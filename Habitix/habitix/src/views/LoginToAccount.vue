@@ -106,26 +106,14 @@ methods: {
 
 
     Login1() {
-        console.log("Login!")
         this.$axios
-            .post(`https://localhost:44381/api/Identity/Login`, this.user1)
+            .post(`https://localhost:44312/api/Identity/Login`, this.user1)
             .then(res => {
                 this.$router.push("LoginToAccount");
             })
              .catch(err => {
           console.error(err);
         });
-        console.log("Login!")
-        // this.$axios
-        //     .post(`https://localhost:44312/api/Habit`, this.habit)
-        //     .then(res => {
-        //         this.$router.push("Login");
-        //     })
-        //      .catch(err => {
-        //   console.error(err);
-        // });
-        console.log("Login!")
-
     },
     
     

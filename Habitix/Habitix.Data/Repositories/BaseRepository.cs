@@ -9,11 +9,11 @@ namespace Habitix.Data.Repositories
 {
     public class BaseRepository<T> : IContextReturnable, IBaseRepository<T> where T : BaseEntity
     {
-        protected readonly BaseContext context;
+        protected readonly BaseContext _context;
 
         public BaseRepository(BaseContext context)
         {
-            this.context = context;
+            _context = context;
         }
 
         #region Base repository methods
@@ -22,18 +22,18 @@ namespace Habitix.Data.Repositories
             if (entity is null)
                 throw new ArgumentNullException($"Entity is null {nameof(entity)}");
 
-            context.Set<T>().Remove(entity);
-            context.SaveChanges();
+            _context.Set<T>().Remove(entity);
+            _context.SaveChanges();
         }
 
         public T Get(long id)
         {
-            return context.Set<T>().SingleOrDefault(s => s.Id == id);
+            return _context.Set<T>().SingleOrDefault(s => s.Id == id);
         }
 
         public IEnumerable<T> GetAll()
         {
-            return context.Set<T>().AsEnumerable();
+            return _context.Set<T>().AsEnumerable();
         }
 
         public void Insert(T entity)
@@ -41,8 +41,8 @@ namespace Habitix.Data.Repositories
             if (entity is null)
                 throw new ArgumentNullException($"Entity is null {nameof(entity)}");
 
-            context.Set<T>().Add(entity);
-            context.SaveChanges();
+            _context.Set<T>().Add(entity);
+            _context.SaveChanges();
         }
 
         public void Update(T entity)
@@ -50,14 +50,14 @@ namespace Habitix.Data.Repositories
             if (entity is null)
                 throw new ArgumentNullException($"Entity is null {nameof(entity)}");
             entity.UpdatedAt = DateTime.UtcNow;
-            context.Set<T>().Update(entity);
-            context.SaveChanges();
+            _context.Set<T>().Update(entity);
+            _context.SaveChanges();
         }
         #endregion
 
         public BaseContext GetContext()
         {
-            return context;
+            return _context;
         }
     }
 }

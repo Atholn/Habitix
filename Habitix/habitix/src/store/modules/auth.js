@@ -26,7 +26,7 @@ const actions = {
             // The Promise used for router redirect in login
             commit(AUTH_REQUEST);
             axios({
-                url: `https://localhost:44381/api/Identity/Login`,
+                url: `https://localhost:44312/api/Identity/Login`,
                 data: user,
                 method: 'POST',
             })

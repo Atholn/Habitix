@@ -1,116 +1,98 @@
+
+
+
+
+
 <template>
-<div>
-
+    <div>
         <div class="login-container">
-        <v-row align="center" justify="center">
-        <v-col cols="12" md="4">
-            <v-card >
-            <v-card-text>
-                <v-form>
-                 <h2 class="naglowek"> Login </h2>
+                <v-row align="center" justify="center">
+                <v-col cols="12" md="4">
 
-                <v-row justify="center">
+                    <v-row justify="center">
                     <v-col cols="12" md="9">
-                    UserName
-                    <v-text-field
-                        name="name"
-                        min="3"
-                        outlined
-                        required
-                        v-model="username"
-                    />
-                    Password
-                    <v-text-field
-                        name="name"
-                        min="5"
-                        type="password"
-                        outlined
-                        required
-                        v-model="password"
-                    />
-                    </v-col>
-                </v-row>
-                <v-card-actions>
-                    <v-btn
-                    color="blue"
-                    to="Register"
-                    :loading="loading"
-                    text
-                    large
-                    >
-                    Register
-                    <v-icon>mdi-exit</v-icon>
-                    </v-btn>
-                    <v-spacer />
-                    <v-btn
-                    color="blue-grey lighten-3"
-                    to="/"
-                    :loading="loading"
-                    large
-                    >
-                    Back
                     
-                    </v-btn>
-                    <v-btn
-                    color="indigo"
-                    @click="Login()"
-                    :loading="loading"
-                    large
-                    >
-                    Login
+                                    <v-text-field
+                                    name="name"
+                                    label="Login"
+                                    hint="At least 8 characters"
+                                    min="8"
+                                    outlined
+                                    required
+                                    v-model="userName"
+                                    />
 
-                    </v-btn>
-                </v-card-actions>
-                </v-form>
-            </v-card-text>
-            </v-card>
-        </v-col>
-        </v-row>
-        </div>
-           
-        <div>
-          <div>
-          TestTest <br>
-          If you dont have account, create it! 
-          </div>
-          <div>
-                      <v-btn
-                    color="orange darken-3"
-                    to="Register"
-                    
-                    text
-                    large
-                  >
-                  Register
-                    
-                  </v-btn>
-          </div>
+                                    <v-text-field
+                                    name="name"
+                                    label="Password"
+                                    hint="At least 8 characters"
+                                    min="8"
+                                    type="password"
+                                    outlined
+                                    required
+                                    v-model="password"
+                                    />
+                    </v-col>
+
+                      <v-btn 
+        elevation="24"
+        to="dashboard" 
+        
+        >
+          <v-icon>mdi-widgets</v-icon>
+        </v-btn>
+                </v-row>
+
+                
+
+                    <v-btn
+                    @click="Login()"
+                    color="primary"
+                    depressed
+                    medium
+                    outlined
+                    small
+                    > Login!</v-btn>
+                </v-col>
+                </v-row>
         </div>
     </div>
 </template>
 
+
 <script>
-import { AUTH_REQUEST } from "../store/actions/auth";
+
+import { AUTH_REQUEST } from "@/store/actions/auth";
 
 
 export default {
-     name: 'Login',
-     data() {
-    return {
-      username: "",
+     name: 'LoginToAccount',
+    data() {
+        return {
+                user: {            
+            userName: "",
+            password: ""
+      },
+      user1: {            
+            userName: "wafel",
+            password: "qazwsx1Q!"
+      },
+      userName: "",
       password: "",
-      loading: false
     };
-    },
-    mounted() {
-        console.log();
-    },
-     methods: {
-    Login() {
-      console.log("hakuna");
-      const { username, password } = this;
-      this.$store.dispatch(AUTH_REQUEST, { username, password }).then(() => {
+  },
+mounted() {
+  this.Login11();
+},
+methods: {
+    Login11() {
+      console.log(this.$store.getters.isAuthenticated)
+      },
         
+    
+    Login() {
+      const { userName, password } = this;
+      this.$store.dispatch(AUTH_REQUEST, { userName, password }).then(() => {
         this.$router.push("/dashboard/");
       });
     },
@@ -118,16 +100,23 @@ export default {
     clearFields() {
       this.username = "";
       this.password = "";
+    },
+
+
+
+
+    Login1() {
+        this.$axios
+            .post(`https://localhost:44312/api/Identity/Login`, this.user1)
+            .then(res => {
+                this.$router.push("Login");
+            })
+             .catch(err => {
+          console.error(err);
+        });
+    },
+    
+    
     }
-  }
-};
-
-</script>
-
-<style scoped>
-.login-container {
-  height: 100vh;
-  display: flex;
 }
-
-</style>
+</script>

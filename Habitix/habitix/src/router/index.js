@@ -23,7 +23,7 @@ const ifNotAuthenticated = (to, from, next) => {
       next();
       return;
     }
-    next('/LoginToAccount');
+    next('/Login');
   };
 
 Vue.use(VueRouter);
@@ -60,16 +60,16 @@ const routes = [
         name: "Register",
         component: Register,
     }, 
-    {
-      path: "/CreateNewAccount",
-      name: "CreateNewAccount",
-      component: CreateNewAccount,
-    },
-    {
-      path: "/LoginToAccount",
-      name: "LoginToAccount",
-      component: LoginToAccount,
-    },
+    // {
+    //   path: "/CreateNewAccount",
+    //   name: "CreateNewAccount",
+    //   component: CreateNewAccount,
+    // },
+    // {
+    //   path: "/LoginToAccount",
+    //   name: "LoginToAccount",
+    //   component: LoginToAccount,
+    // },
 
     // otherwise redirect to home
     { path: '*', redirect: '/' }

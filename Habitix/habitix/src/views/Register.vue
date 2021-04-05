@@ -1,149 +1,120 @@
+
+
+
+
+
 <template>
-  <v-container fluid style="min-height: 100vh">
-    <v-row class="pa-2" justify="center" align="center">
-      <v-col cols="12" sm="5">
-        <v-card dark>
-          <v-card-title primary-title>
-            Create your account!
-          </v-card-title>
-          <v-form class="pa-2">
-            <v-row justify="center">
-              <v-col cols="12" md="8">
-                <v-text-field
-                  name="email"
-                  label="E-mail"
-                  outlined
-                  required
-                  v-model="user.email"
-                />
-                <v-text-field
-                  name="email"
-                  label="Repeat E-mail"
-                  outlined
-                  required
-                  v-model="checkUser.email"
-                />
-                <v-text-field
-                  name="name"
-                  label="Login"
-                  hint="At least 8 characters"
-                  min="8"
-                  outlined
-                  required
-                  v-model="user.username"
-                />
-                <v-text-field
-                  name="name"
-                  label="Password"
-                  hint="At least 8 characters"
-                  min="8"
-                  type="password"
-                  outlined
-                  required
-                  v-model="user.password"
-                />
-                <v-text-field
-                  name="name"
-                  label="Repeat Password"
-                  hint="At least 8 characters"
-                  min="8"
-                  type="password"
-                  outlined
-                  required
-                  v-model="checkUser.password"
-                />
-                <v-checkbox
-                  label="Do you read and accept our terms of service"
-                />
-                <v-checkbox label="Do you want to sign in to our newsletter" />
-              </v-col>
-            </v-row>
-            <v-card-actions>
-              <v-spacer />
-              <v-btn color="blue-grey lighten-3" to="Login" large>
-                Back
-                <v-icon>mdi-exit</v-icon>
-              </v-btn>
-              <v-btn
-                color="indigo darken-1"
-                @click="Register()"
-                :loading="loading"
-                :disabled="!isValid"
-                large
-              >
-                Register account
-              </v-btn>
-            </v-card-actions>
-          </v-form>
-        </v-card>
-      </v-col>
-    </v-row>
-  </v-container>
+    <div>
+        <div class="login-container">
+                <v-row align="center" justify="center">
+                <v-col cols="12" md="4">
+
+                    <v-row justify="center">
+                    <v-col cols="12" md="9">
+                    
+                                    <v-text-field
+                                    name="email"
+                                    label="E-mail"
+                                    outlined
+                                    required
+                                    v-model="user.email"
+                                    />
+
+                                    <v-text-field label="Test" > </v-text-field>
+                                    
+
+                                    <v-text-field
+                                    name="name"
+                                    label="Login"
+                                    hint="At least 8 characters"
+                                    min="8"
+                                    outlined
+                                    required
+                                    v-model="user.userName"
+                                    />
+
+                                    <v-text-field
+                                    name="name"
+                                    label="Password"
+                                    hint="At least 8 characters"
+                                    min="8"
+                                    type="password"
+                                    outlined
+                                    required
+                                    v-model="user.password"
+                                    />
+                    </v-col>
+                </v-row>
+
+                
+
+                    <v-btn
+                    @click="Register()"
+                    color="primary"
+                    depressed
+                    medium
+                    outlined
+                    small
+                    > Register!</v-btn>
+                </v-col>
+                </v-row>
+        </div>
+    </div>
 </template>
 
 
 <script>
 export default {
-  data() {
-    return {
-      user: {
-        email: "",
-        username: "",
-        password: ""
+     name: 'CreateNewAccount',
+    data() {
+        return {
+                user: {            
+            userName: "",
+            email: "",
+            password: ""
       },
-      checkUser: {
-        email: "",
-        password: ""
+       user1: {            
+            userName: "dup11a",
+            email: "dupa@gmail.com",
+            password: "qazwsx1Q!"
       },
-      isValid: false
+      habit : {
+          habitName: "nauka prog",
+            habitDescription: "Nauka programowania 30 k .NET ",
+  startDateHabit: "2021-01-22T19:36:26.101Z",
+  habitixUserId: 2,
+  habitDates: [
+    {
+      instanceData: "2021-03-22T19:36:26.102Z"
+    }]
+      }
     };
   },
-watch: {
-    "user.email": function() {
-      this.isValid = this.IsValid();
-    },
-    "user.username": function() {
-      this.isValid = this.IsValid();
-    },
-    "user.password": function() {
-      this.isValid = this.IsValid();
-    },
-    "checkUser.email": function() {
-      this.isValid = this.IsValid();
-    },
-    "checkUser.username": function() {
-      this.isValid = this.IsValid();
-    },
-    "checkUser.password": function() {
-      this.isValid = this.IsValid();
-    }
-  },
 
-  methods: {
+methods: {
     Register() {
-      console.log(process.env.VUE_APP_BASE_URL_API)
-      if (!this.IsValid()) return;
-      this.$axios
-        .post(`${process.env.VUE_APP_BASE_URL_API}/User/register`, this.user)
-        .then(res => {
-          this.$router.push("Login");
-        })
-        .catch(err => {
+        console.log("Register!")
+        this.$axios
+            .post(`https://localhost:44312/api/Identity/RegisterUser`, this.user)
+            .then(res => {
+                this.$router.push("Login");
+            })
+             .catch(err => {
           console.error(err);
         });
-    },
+        console.log("Register2!")
+        // this.$axios
+        //     .post(`https://localhost:44312/api/Habit`, this.habit)
+        //     .then(res => {
+        //         this.$router.push("Login");
+        //     })
+        //      .catch(err => {
+        //   console.error(err);
+        // });
+console.log("Register3!")
 
-    IsValid() {
-      return (
-        this.checkUser.email &&
-        this.checkUser.password &&
-        this.user.email &&
-        this.user.username &&
-        this.user.password &&
-        this.checkUser.email == this.user.email &&
-        this.checkUser.password == this.user.password
-      );
+    },
+    
     }
-  }
-};
+}
 </script>

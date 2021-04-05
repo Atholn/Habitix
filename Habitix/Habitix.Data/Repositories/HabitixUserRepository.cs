@@ -17,7 +17,7 @@ namespace Habitix.Data.Repositories
 
         public HabitixUser GetHabitixUser(long Id)
         {
-            return context.HabitixUsers
+            return _context.HabitixUsers
                 .Include(x => x.Habits)
                 .FirstOrDefault(p => p.Id == Id);
         }

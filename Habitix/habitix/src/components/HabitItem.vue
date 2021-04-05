@@ -1,13 +1,14 @@
 <template>
     <div class="habit-item" @click="favoriteMessage(habit.id)">
-        <div class="user-profile__habitix_pro"  v-if="habit.id == favoriteMessageId" >
-            <div class="habitix-item__user">
+        <div class="user-profile__habit_pro"  v-if="habit.id == favoriteMessageId" >
+            <div class="habit-item__user">
                 {{ habit.habitDescription }}
             </div>
-            <div class="habitix-item_content">
+            <div class="habit-item_content">
                 {{ habit.habitName }}
             </div>
-                                             <v-checkbox
+            sdsdsd
+             <v-checkbox
               
               label="yellow"
               color="yellow"
@@ -15,15 +16,15 @@
               hide-details
             />
         </div>
-        <div v-else class="user-profile__habitix" >
-            <div class="habitix-item__user">
+        <div v-else class="user-profile__habit" >
+            <div class="habit-item__user">
                {{ habit.habitDescriptsion }}
             </div>
-            <div class="habitix-item_content">
+            <div class="habit-item_content">
                 {{ habit.habitName }}
             </div>
-                                 <v-checkbox
-
+            sdsdsdsasdassasd
+            <v-checkbox
               label="yellow"
               color="yellow"
               value="yellow"
@@ -50,11 +51,8 @@ export default {
     },
     methods: {
         favoriteMessage(id) {
-            this.$emit('favorite', id);
-            
+            this.$emit('favorite', id);          
             this.favoriteMessageId = id;
-
-
         }
     }
 
@@ -75,17 +73,24 @@ export default {
         &:hover{
              transform: scale(1.1, 1.1);
          }
-        .habit-item__user {
+
+
+    }
+            .habit-item__user {
              font-weight: bold;
          }
 
-    }
-
-    .user-profile__habitix_pro {
+         .user-profile__habit_pro {
         background-color: blue;
     }
+        .user-profile__habit {
+        background-color: red;
+                    .habit-item__user {
+             font-weight: bold;
+         }
+    }
 
-    .habitix-item_content{
+    .habit-item_content{
         margin-top: 5px;
     }
 </style>

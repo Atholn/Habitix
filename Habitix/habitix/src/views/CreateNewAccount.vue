@@ -95,7 +95,7 @@ methods: {
     Register() {
         console.log("Register!")
         this.$axios
-            .post(`https://localhost:44381/api/Identity/RegisterUser`, this.user)
+            .post(`https://localhost:44312/api/Identity/RegisterUser`, this.user)
             .then(res => {
                 this.$router.push("LoginToAccount");
             })
