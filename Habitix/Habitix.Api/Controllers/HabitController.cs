@@ -53,6 +53,14 @@ namespace Habitix.Api.Controllers
             return Ok(habit);
         }
 
+        [HttpGet("/UserHabits")]
+        [Authorize(Roles = UserRoles.User)]
+        [SwaggerOperation(Summary = "Retrieves a specific habit by User Id")]
+        public ActionResult GetAllByUserId(long userId)
+        {
+            return Ok(_habitService.GetAllByUserId(userId));
+        }
+
         [HttpGet("/UserId/{userId}")]
         [Authorize(Roles = UserRoles.User)]
         [SwaggerOperation(Summary = "Retrieves a specific habit by User Id")]

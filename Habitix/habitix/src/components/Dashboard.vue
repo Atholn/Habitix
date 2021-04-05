@@ -27,9 +27,10 @@
      
     <div class="user-habit">
         <div class ="user-habit__user-panel">
-            <h1 class="user-habit__username">@{{ user.username }}</h1>
-            <div class="user-habit_admin-badge" v-if="!user.Admin">
-                Admin
+            <h1 class="user-habit__username">@{{ habitixUserInfo.userName }}</h1>
+            <div class="user-habit_admin-badge" v-if="habitixUserInfo.userRole === 'Admin'">{{ habitixUserInfo.userRole }}
+            </div>
+            <div class="user-habit_user-badge" v-else>{{ habitixUserInfo.userRole }}
             </div>
             <div class="user-habit__follower-count">
                 <strong>Followers: </strong>{{ followers }}
@@ -55,13 +56,7 @@
   
   
   
-  </div>
-
-
-
-
-
-    
+  </div>   
 </template>
 
 
@@ -98,7 +93,7 @@ export default {
       //         }],
       h:[],
 
-      newMessageContent: '',
+           newMessageContent: '',
             selectetMessageType: 'instant',
 
             messageTypes: [
@@ -121,6 +116,11 @@ export default {
             },
                 
             hab: [],
+            ///------------
+          habitixUserInfo: {
+            userName: "",
+            userRole: ""
+              },     
     };
   },
 
@@ -140,7 +140,9 @@ export default {
   mounted() {
      this.getHabits();
       this.followUser();
-                this.getHab();
+      this.getHab();
+                ///----
+                this.getHabitixUserInfo();
   },
 
   methods: {
@@ -197,7 +199,6 @@ export default {
                 })
                 this.newMessageContent = '';
             }
-
         },
          getHab() {
             this.hab = [];     
@@ -218,6 +219,25 @@ export default {
                 console.error(err);
                 });       
             },
+
+            //--------------
+            getHabitixUserInfo() {
+
+                this.$axios   
+                .get(`https://localhost:44312/api/HabitixUser/UserInfo`, {                  
+                      headers: {
+                          "Content-Type": "application/json",
+                         // Authorization: `${localStorage.getItem('user-token')}`
+                          'Authorization': 'Bearer ' + localStorage.getItem('user-token'),
+                      }
+                    })
+                .then((res) => {
+                this.habitixUserInfo = res.data;
+                })
+                .catch((err) => {
+                console.error(err);
+                });       
+            }
             
   },
 }
@@ -248,6 +268,15 @@ export default {
 
         .user-habit_admin-badge{
             background-color: blue;
+            color:white;
+            border-radius: 5px;
+            margin-right: auto;
+            padding: 0 10px;
+            font-weight: bold;
+        }
+        
+        .user-habit_user-badge{
+            background-color: black;
             color:white;
             border-radius: 5px;
             margin-right: auto;

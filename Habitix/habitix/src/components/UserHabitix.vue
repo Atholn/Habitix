@@ -58,6 +58,7 @@ export default {
             },
                 
             hab: [],
+            //------
 
         }
     },
@@ -91,7 +92,6 @@ export default {
                 })
                 this.newMessageContent = '';
             }
-
         },
          getHab() {
             this.hab = [];     
@@ -104,7 +104,13 @@ export default {
                 .catch((err) => {
                 console.error(err);
                 });       
-            }, },      
+            }, 
+            
+
+            
+            
+            
+            },      
             mounted() {
                 this.followUser();
                 this.getHab();

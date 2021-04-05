@@ -8,6 +8,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Swashbuckle.AspNetCore.Annotations;
+using System.Security.Claims;
+using Habitix.Api.Models;
 
 namespace Habitix.Api.Controllers
 {
@@ -21,6 +23,14 @@ namespace Habitix.Api.Controllers
         {
             _habitixUserService = habitixUserService;
         }
+
+        [HttpGet("UserInfo")]
+        [SwaggerOperation(Summary = "Retrieves habitix user info")]
+        public async Task<ActionResult> GetHabitixUserInfo()
+        {
+            return Ok(new UserInfo() { UserName = User.FindFirstValue(ClaimTypes.Name), UserRole = User.FindFirstValue(ClaimTypes.Role)});
+        }
+
 
         [HttpPost]
         [SwaggerOperation(Summary = "Create new HabitixUser")]
