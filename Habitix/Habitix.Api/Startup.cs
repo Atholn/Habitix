@@ -8,6 +8,7 @@ using Habitix.Data.Services;
 using Habitix.Services.Base.Interfaces;
 using Habitix.Services.Mappers;
 using Habitix.Services.Services;
+using Habitix.Services.Services.Interfaces;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -84,6 +85,8 @@ namespace Habitix.Api
                     .AddScoped<IHabitixUserService, HabitixUserService>()
                     .AddScoped<IHabitRepository, HabitRepository>()
                     .AddScoped<IHabitService, HabitService>()
+                    .AddScoped<IHabitDateRepository, HabitDateRepository>()
+                    .AddScoped<IHabitDateService, HabitDateService>()
                     .AddScoped(typeof(IContextReturnable), typeof(BaseRepository<BaseEntity>));
 
 

@@ -6,6 +6,8 @@ namespace Habitix.Services.Models
 {
    public class HabitDateRepresentation
     {
-       public DateTime InstanceData{ get; set; }
+        public long Id { get; set; }
+        public long HabitId { get; set; }
+        public DateTime InstanceData{ get; set; }
     }
 }

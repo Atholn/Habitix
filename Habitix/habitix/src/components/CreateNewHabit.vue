@@ -24,8 +24,7 @@
                   color="indigo darken-1"
                   @click="AddHabit()"
                   large
-                >
-                  
+                >              
                   <v-icon>mdi-plus</v-icon>
                 </v-btn>
         hakuna matata!
@@ -41,8 +40,7 @@ export default {
                     habitName: "",
                     habitDescription: "",
                     startDateHabit: "2021-04-05T21:13:35.191Z",
-                    habitixUserId: 2,
-                    habitDates: [ ]
+                    habitixUserId: 2,   
             }
             
         }
