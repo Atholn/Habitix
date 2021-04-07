@@ -2,6 +2,7 @@
     <div>     
         <input type="text" :value="msg" @input="changeMessage">
         <p> {{message}} </p>
+        
         <v-btn        
         @click="Add()"
         >{{message}}</v-btn>
