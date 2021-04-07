@@ -9,7 +9,7 @@ import Register from "../views/Register.vue";
 import store from "../store/index"
 import CreateNewAccount from "../views/CreateNewAccount.vue";
 import LoginToAccount from "../views/LoginToAccount.vue"
-
+import Ap from "../components/Test/Ap.vue"
 const ifNotAuthenticated = (to, from, next) => {
     if (!store.getters.isAuthenticated) {
       next();
@@ -41,16 +41,6 @@ const routes = [
         beforeEnter: ifAuthenticated,
     },
     {
-        path: "/profile",
-        name: "Profile",
-        component: Profile,
-    },
-    {
-        path: "/habitix",
-        name: "Habitix",
-        component: Habitix,
-    },
-    {
         path: "/login",
         name: "Login",
         component: Login,
@@ -60,6 +50,24 @@ const routes = [
         name: "Register",
         component: Register,
     }, 
+    //-----
+    {
+        path: "/profile",
+        name: "Profile",
+        component: Profile,
+    },
+    {
+        path: "/habitix",
+        name: "Habitix",
+        component: Habitix,
+    },
+    //-----
+    {
+      path: "/ap",
+      name: "ap",
+      component: Ap,
+    },
+
     // {
     //   path: "/CreateNewAccount",
     //   name: "CreateNewAccount",

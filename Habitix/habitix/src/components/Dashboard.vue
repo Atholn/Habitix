@@ -40,7 +40,7 @@
         <div class ="user-habit__messeges-wrapper "> 
 
 
-                    <div v-if="h ===[]"> 
+                    <div v-if="h === []"> 
                 Lista pusta !  </div>
           <div v-else> 
                 <HabitItem  
