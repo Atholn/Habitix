@@ -36,10 +36,15 @@
 
                       <v-btn 
         elevation="24"
-        to="dashboard" 
-        
+        to="dashboard"  
         >
           <v-icon>mdi-widgets</v-icon>
+        </v-btn>
+        <v-btn 
+        elevation="24"
+        to="home"  
+        >
+          home
         </v-btn>
                 </v-row>
 
@@ -82,14 +87,11 @@ export default {
     };
   },
 mounted() {
-  this.Login11();
 },
 methods: {
-    Login11() {
-      console.log(this.$store.getters.isAuthenticated)
-      },
-        
-    
+    // Login() {
+    //   console.log(this.$store.getters.isAuthenticated)
+    //   },
     Login() {
       const { userName, password } = this;
       this.$store.dispatch(AUTH_REQUEST, { userName, password }).then(() => {
@@ -101,9 +103,6 @@ methods: {
       this.username = "";
       this.password = "";
     },
-
-
-
 
     Login1() {
         this.$axios

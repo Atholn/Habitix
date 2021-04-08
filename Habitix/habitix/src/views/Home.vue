@@ -11,36 +11,34 @@
         
         <v-btn 
         elevation="24"
-        to="habitix" 
+        to="dashboard" 
         :loading="loading"
         >
           <v-icon>mdi-widgets</v-icon>
         </v-btn>
       
 
-        <div   v-if="!this.$store.getters.isAuthenticated" >
-          <v-btn 
+        <!-- <div   v-if="" > -->
+          <v-btn v-if="!this.$store.getters.isAuthenticated" 
         elevation="24"
-        :loading="loading"
         to="Login"
         >
           <v-icon>mdi-login</v-icon>
         </v-btn> 
         
-        </div>
+        <!-- </div> -->
         
 
-        <v-btn 
+        <v-btn  v-else
         elevation="24"
         to="Home" 
-        :loading="loading"
         >
           <v-icon>mdi-logout</v-icon>
         </v-btn>
       </nav>
 
 
-  <v-container fluid fill-height>
+    <v-container fluid fill-height>
       habitix
     </v-container>
   </div>
@@ -56,7 +54,8 @@ export default {
   },
   data() {
     return {
-      icons: ["mdi-facebook", "mdi-twitter", "mdi-linkedin", "mdi-instagram"]
+      icons: ["mdi-facebook", "mdi-twitter", "mdi-linkedin", "mdi-instagram"],
+      loading: false
     };
   },
   mounted: {
