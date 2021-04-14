@@ -1,15 +1,14 @@
 <template>
-  <div class="home">
-    <v-container fluid fill-height>
-     Hello in Habitix!
-    </v-container>
+  <div class="footer">     
+    <footer> footer </footer>
   </div>
 </template>
 
 <script>
 export default {
-  name: "Home",
+  name: "Fot",
   components: {
+
   },
   data() {
     return {
@@ -17,12 +16,17 @@ export default {
       loading: false
     };
   },
-  mounted: {
-  },
-  methods: {
-  }
 };
 </script>
+
+<style lang ="scss" scoped>
+  .footer {
+    background-color: black;
+    font-size: 40px;
+    color: blue;
+    text-align: center;
+  }
+</style>
 
 
 

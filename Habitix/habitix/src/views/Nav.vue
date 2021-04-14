@@ -17,8 +17,6 @@
           <v-icon>mdi-widgets</v-icon>
         </v-btn>
       
-
-        <!-- <div   v-if="" > -->
           <v-btn v-if="!this.$store.getters.isAuthenticated" 
         elevation="24"
         to="Login"
@@ -34,6 +32,37 @@
         to="Home" 
         >
           <v-icon>mdi-logout</v-icon>
+        </v-btn>
+
+                <v-btn 
+        elevation="24"
+        :loading="loading"
+        >
+          <v-icon>mdi-widgets</v-icon>
+        </v-btn>
+            <v-btn 
+        elevation="24"
+        :loading="loading"
+        >
+          <v-icon>mdi-widgets</v-icon>
+        </v-btn>
+            <v-btn 
+        elevation="24"
+        :loading="loading"
+        >
+          <v-icon>mdi-widgets</v-icon>
+        </v-btn>
+            <v-btn 
+        elevation="24"
+        :loading="loading"
+        >
+          <v-icon>mdi-widgets</v-icon>
+        </v-btn>
+            <v-btn 
+        elevation="24"
+        :loading="loading"
+        >
+          <v-icon>mdi-widgets</v-icon>
         </v-btn>
       </nav>
 
@@ -57,3 +86,10 @@ export default {
 
 
 
+<style lang ="scss" scoped>
+  nav {
+    background-color: black;
+
+    text-align: center;
+  }
+</style>
