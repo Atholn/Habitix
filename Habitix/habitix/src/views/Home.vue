@@ -1,55 +1,23 @@
 <template>
+
   <div class="home">
-      <nav> 
-        <v-btn 
-        elevation="24"
-        to="Home" 
-        :loading="loading"
-        >
-          <v-icon>mdi-home</v-icon>
-        </v-btn>
-        
-        <v-btn 
-        elevation="24"
-        to="dashboard" 
-        :loading="loading"
-        >
-          <v-icon>mdi-widgets</v-icon>
-        </v-btn>
-      
-
-        <!-- <div   v-if="" > -->
-          <v-btn v-if="!this.$store.getters.isAuthenticated" 
-        elevation="24"
-        to="Login"
-        >
-          <v-icon>mdi-login</v-icon>
-        </v-btn> 
-        
-        <!-- </div> -->
-        
-
-        <v-btn  v-else
-        elevation="24"
-        to="Home" 
-        >
-          <v-icon>mdi-logout</v-icon>
-        </v-btn>
-      </nav>
-
-
     <v-container fluid fill-height>
-      habitix
+     Hello in Habitix!
     </v-container>
+
+
   </div>
 </template>
 
 <script>
 
 
+//import Nav from './Nav.vue';
+
 export default {
   name: "Home",
   components: {
+    // Nav
 
   },
   data() {
@@ -59,12 +27,8 @@ export default {
     };
   },
   mounted: {
-  //  console.log();
   },
   methods: {
-    // logg(){
-    //     console.info(this.$store.getters.authStatus)
-    // }
   }
 
 };
