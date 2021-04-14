@@ -1,7 +1,11 @@
 <template>
   <div class="home">
-      <nav> 
-        <v-btn 
+      <nav>
+          <v-row> 
+              <v-col style="text-align: left; color: blue; font-size:30px" >  Habitix     </v-col>
+              <v-col style="text-align: right; color: blue;">        
+                  
+                   <v-btn 
         elevation="24"
         to="Home" 
         :loading="loading"
@@ -32,38 +36,11 @@
         to="Home" 
         >
           <v-icon>mdi-logout</v-icon>
-        </v-btn>
+        </v-btn></v-col>
 
-                <v-btn 
-        elevation="24"
-        :loading="loading"
-        >
-          <v-icon>mdi-widgets</v-icon>
-        </v-btn>
-            <v-btn 
-        elevation="24"
-        :loading="loading"
-        >
-          <v-icon>mdi-widgets</v-icon>
-        </v-btn>
-            <v-btn 
-        elevation="24"
-        :loading="loading"
-        >
-          <v-icon>mdi-widgets</v-icon>
-        </v-btn>
-            <v-btn 
-        elevation="24"
-        :loading="loading"
-        >
-          <v-icon>mdi-widgets</v-icon>
-        </v-btn>
-            <v-btn 
-        elevation="24"
-        :loading="loading"
-        >
-          <v-icon>mdi-widgets</v-icon>
-        </v-btn>
+ </v-row> 
+          
+    
       </nav>
 
   </div>
@@ -88,8 +65,13 @@ export default {
 
 <style lang ="scss" scoped>
   nav {
-    background-color: black;
-
-    text-align: center;
+    /* background-color: black; */
+    height: 100;
+    margin-left: 50px;
+    margin-right: 50px;
+    /* text-align: center; */
+  }
+  v-btn {
+      text-align: right;
   }
 </style>
