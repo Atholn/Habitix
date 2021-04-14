@@ -46,8 +46,10 @@
                 <HabitItem  
                     v-for="item in h" 
                     :key="item.id"                   
-                    :habit="item"                 
-                /> </div>
+                    :habit="item" 
+                                    
+                /> 
+                </div>
 
 
                  <!-- @favorite="toggleFavorite"   -->

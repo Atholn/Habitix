@@ -47,9 +47,6 @@
           home
         </v-btn>
                 </v-row>
-
-                
-
                     <v-btn
                     @click="Login()"
                     color="primary"
