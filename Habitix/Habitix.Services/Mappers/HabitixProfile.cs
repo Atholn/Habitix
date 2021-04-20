@@ -16,7 +16,6 @@ namespace Habitix.Services.Mappers
             CreateMap<Habit, HabitRepresentation>()
                 .ReverseMap();
             CreateMap<HabitDate, HabitDateRepresentation>()
-                .ForMember(h=> h.InstanceData, m=> m.MapFrom( x=>x.CreatedAt))
                 .ReverseMap();
         }
     }
