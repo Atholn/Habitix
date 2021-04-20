@@ -9,6 +9,7 @@ namespace Habitix.Data.Repositories.Interfaces
     public interface IHabitRepository : IBaseRepository<Habit>
     {
         Task<IEnumerable<Habit>> GetAllByUserIdAsync(string id);
+        Task<IEnumerable<Habit>> GetAllByUserIdTodayAsync(string id, bool isDone);
         Task<Habit> GetByIdAsync(long id);
         //-----------
         List<Habit> GetAllByHabitixUserId(long id);

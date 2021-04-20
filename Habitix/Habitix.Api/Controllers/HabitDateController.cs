@@ -31,6 +31,13 @@ namespace Habitix.Api.Controllers
             return Ok(await _habitDateService.GetAllByHabitId(id));
         }
 
+        [HttpGet("Today/{id}")]
+        [SwaggerOperation(Summary = "Retrieves a specific habit date by habit ID today")]
+        public async Task<ActionResult> GetAllByHabitIdToday(long id)
+        {
+            return Ok(await _habitDateService.GetAllByHabitId(id));
+        }
+
 
         [HttpPost]
         [Authorize]

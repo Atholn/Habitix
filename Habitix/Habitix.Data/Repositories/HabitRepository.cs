@@ -30,6 +30,40 @@ namespace Habitix.Data.Repositories
                   .ToListAsync();
         }
 
+        public async Task<IEnumerable<Habit>> GetAllByUserIdTodayAsync(string id, bool isDone)
+        {
+            return await _context.HabitsDates.Join(
+                _context.Habits,
+                habit => habit.HabitId,
+                date => date.Id,
+                (date, habit) => new
+                {
+                     Id = date.Id,
+                     IfHabitDone = date.IfHabitDone,
+                     DateOfHabit  = date.DateOfHabit,
+                     Habit = habit,
+                     HabitId = habit.Id
+                })
+                .Where(x=> x.IfHabitDone == isDone 
+                && x.DateOfHabit.Date == DateTime.Now.Date
+                && x.Habit.UserId.Contains(id)
+                )      
+                .Select(x=> new Habit
+                {
+                    Id = x.Id,
+                    HabitName = x.Habit.HabitName,
+                    HabitDescription = x.Habit.HabitDescription,
+                    StartDateHabit = x.Habit.StartDateHabit,
+                    CreatedAt = x.Habit.CreatedAt,
+                    HabitDates = x.Habit.HabitDates,
+                    HabitixUser = x.Habit.HabitixUser,
+                    HabitixUserId = x.Habit.HabitixUserId,
+                    UpdatedAt = x.Habit.UpdatedAt,
+                    UserId = x.Habit.UserId, 
+                })
+                .ToListAsync(); 
+        }
+
         public async Task<Habit> GetByIdAsync(long id)
         {
             return await _context.Habits.SingleOrDefaultAsync(x => x.Id == id);

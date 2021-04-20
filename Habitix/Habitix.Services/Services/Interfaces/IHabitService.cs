@@ -14,6 +14,7 @@ namespace Habitix.Services.Base.Interfaces
         List<HabitRepresentation> GetAllHabits();
         List<HabitRepresentation> GetAllByHabitixUserId(long id);
         Task<IEnumerable<HabitRepresentation>> GetAllByUserId(string id);        
+        Task<IEnumerable<HabitRepresentation>> GetAllByUserIdToday(string id, bool isDone);        
         public void Delete(long id);
         HabitRepresentation Update(HabitRepresentation habitRepresentation, long id);
         Task<bool> UserOwnsHabitAsync(long postId, string userId);

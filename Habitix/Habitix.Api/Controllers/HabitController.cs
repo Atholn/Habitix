@@ -53,13 +53,22 @@ namespace Habitix.Api.Controllers
             return Ok(habit);
         }
 
-        [HttpGet("/UserHabits")]
+        [HttpGet("UserHabits")]
         [Authorize]
         [SwaggerOperation(Summary = "Retrieves a specific habit by User Id")]
         public async Task<ActionResult> GetAllByUserId()
         {
             return Ok(await _habitService.GetAllByUserId(User.FindFirstValue(ClaimTypes.NameIdentifier)));
         }
+
+        [HttpGet("UserHabits/{isDone}")]
+        [Authorize]
+        [SwaggerOperation(Summary = "Retrieves a specific habit by User Id")]
+        public async Task<ActionResult> GetAllByUserIdToday(bool isDone)
+        {
+            return Ok(await _habitService.GetAllByUserIdToday(User.FindFirstValue(ClaimTypes.NameIdentifier), isDone));
+        }
+
 
         [HttpGet("/UserId/{userId}")]
         [Authorize]
