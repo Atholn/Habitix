@@ -1,4 +1,5 @@
 <template>
+
     <div class="habit-item" @click="favoriteMessage(habit.id)">
         <div class="user-profile__habit_pro"  v-if="habit.id == favoriteMessageId" >
             <div class="habit-item__user">
@@ -13,6 +14,7 @@
               value="yellow"
               hide-details
             />
+            {{hide}}
         </div>
 
         
@@ -60,6 +62,7 @@
 
 <script>
 export default {
+
     name: "HabitItem",
     data() {
         return {
@@ -69,7 +72,12 @@ export default {
         }
     },
     props: {
-        
+        hide: {
+            type: Boolean
+        },
+        imp: {
+            type: String,
+        },
         habit: {
             type: Object,
             required: true,
@@ -91,7 +99,9 @@ export default {
                       }
                     })
                 .then((res) => {
+                    
                 this.hD = res.data;
+                console.log( this.hD)
                 })
                 .catch((err) => {
                 console.error(err);
@@ -108,7 +118,8 @@ export default {
         },
     mounted(){
     this.getHabitDate(this.habit.id);
-    }
+    },
+    
     
 
 };

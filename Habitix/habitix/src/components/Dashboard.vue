@@ -1,30 +1,7 @@
 <template>
+<v-container fluid>
   <div class="stats">
-    <div><v-btn 
-        elevation="24"
-        
-         @click="logout()"
-        >
-           <v-icon>mdi-logout</v-icon>
-        </v-btn>
-
-    Helloł 
-               <div v-for="habit in h" :key="habit.id">
-              {{habit.habitName}}  {{habit.habitDescription}}  {{habit.startDateHabit}}  {{habit.habitixUserId}}
-               </div>
-                    
-                    <!-- <div v-for="item in hab1" :key="item.id">  
-                      <div v-for="post in item.data1" :key="post.id" >{{post.id}} - {{post.title}} - {{post.content}} - {{post.creationDate}} </div> 
-                      </div> 
-
-                       <div v-for="item in this.posts.data" :key="item.id">  {{item.id}} - {{item.title}} - {{item.content}} - {{item.creationDate}} </div> -->
-           <!-- {{this.posts}} -->
-  </div> 
-  
-  <div> 
-
- <v-container fluid>
-     
+  <div>  
     <div class="user-habit">
         <div class ="user-habit__user-panel">
             <h1 class="user-habit__username">@{{ habitixUserInfo.userName }}</h1>
@@ -35,36 +12,52 @@
             <div class="user-habit__follower-count">
                 <strong>Followers: </strong>{{ followers }}
             </div>
+            <v-switch input-value="true" v-model="hs" @click="hideShow()" >
+                 <!-- <template v-slot:label>
+        Turn on the progress: <v-progress-circular
+          :indeterminate="hs"
+          :value="0"
+          size="24"
+          class="ml-2"
+        ></v-progress-circular>
+      </template>  -->
+      </v-switch>
         </div>
+            
 
-        <div class ="user-habit__messeges-wrapper "> 
+        <div class ="user-habit__habits " > 
 
 
-                    <div v-if="h === []"> 
+                <div v-if="hs" >
+                    
+                <div v-if="h === []"> 
                 Lista pusta !  </div>
-          <div v-else> 
+
+                <div v-else> 
                 <HabitItem  
                     v-for="item in h" 
                     :key="item.id"                   
                     :habit="item" 
-                                    
+                    :hide=hs
+                    :imp="imp"
                 /> 
                 </div>
-
+</div> 
 
                  <!-- @favorite="toggleFavorite"   -->
                 <!--                               -->
         </div>
+
+
         {{ h }}
 
-        <CreateNewHabit/>
+        <CreateNewHabit
+        @clicked="clickChild"/>
          </div>
       
-     </v-container>
-
-
   </div>
-  </div>   
+  </div>  
+    </v-container> 
 </template>
 
 
@@ -80,50 +73,10 @@ export default {
     data() {
     return {
       icons: ["mdi-facebook", "mdi-twitter", "mdi-linkedin", "mdi-instagram"],
-      // habits: [],
-      //     data1: [
-      //         {
-      //           id: 27,
-      //           title: "post1",
-      //           content: "content1",
-      //           creationDate: "2021-03-29T21:23:54.8592929"
-      //         },
-      //         {
-      //           id: 28,
-      //           title: "post2",
-      //           content: "content2",
-      //           creationDate: "2021-03-29T21:24:01.1085022"
-      //         },
-      //         {
-      //           id: 29,
-      //           title: "post3",
-      //           content: "content3",
-      //           creationDate: "2021-03-29T21:24:06.0869964"
-      //         }],
       h:[],
-
-           newMessageContent: '',
-            selectetMessageType: 'instant',
-
-            messageTypes: [
-                { value: 'draft', name: 'Draft'},
-                { value: 'instant', name: 'Instant Mess'} 
-            ],
-            isLoading: false,
-            followers: 0,
-            user: {
-                id:1,
-                username: '_MATEUSZ',
-                firstName: 'Mati',
-                lastName: 'Atcholn',
-                email: 'mateuszzydzik@gmail.com',
-                isAdmin: true,
-                habits: [ 
-                        { id : 1,  content:'Habitix info'},
-                        { id : 2,  content:'InfoInfoInfoInfo'}
-                ]
-            },
-                
+      imp: "test",
+      followers: 0,
+            hs: true, 
             hab: [],
             ///------------
           habitixUserInfo: {
@@ -150,12 +103,16 @@ export default {
 
   mounted() {
      this.getHabits();
-      this.followUser();
                 ///----
                 this.getHabitixUserInfo();
   },
 
   methods: {
+      hideShow() {
+          console.log(this.hs)
+            this.hs = !this.hs;
+            console.log(this.hs)
+      },
       Login11() {
       console.log(this.$store.getters.isAuthenticated)
       },
@@ -172,7 +129,6 @@ export default {
                       headers: {
 
                           "Content-Type": "application/json",
-                         // Authorization: `${localStorage.getItem('user-token')}`
                           'Authorization': 'Bearer ' +localStorage.getItem('user-token'),
                       }
                     })
@@ -186,16 +142,14 @@ export default {
                 console.error(err);
                 }); 
                 
-                // console.info("info");   
+                // console.info(this.h);   
                 console.info(localStorage.getItem('user-token'));              
             },
 
         followUser() {
             this.followers++
         },
-        adminChange() {
-            this.user.isAdmin = false;
-        },
+
         toggleFavorite(id) {
             console.log(`Favourited mess #${id}`);
         },
@@ -217,7 +171,6 @@ export default {
 
                       headers: {
                           "Content-Type": "application/json",
-                         // Authorization: `${localStorage.getItem('user-token')}`
                           'Authorization': 'Bearer ' + localStorage.getItem('user-token'),
                       }
                     })
@@ -293,7 +246,7 @@ export default {
           }
         }  
 
-        .user-habit__messeges-wrapper {
+        .user-habit__habits {
             display: grid;
             grid-gap: 10px;
         }

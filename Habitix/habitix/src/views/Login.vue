@@ -1,8 +1,3 @@
-
-
-
-
-
 <template>
     <div>
         <div class="login-container">
@@ -32,9 +27,9 @@
                                     required
                                     v-model="password"
                                     />
-                    </v-col>
+                  </v-col>
 
-                      <v-btn 
+        <v-btn 
         elevation="24"
         to="dashboard"  
         >

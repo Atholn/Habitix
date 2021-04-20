@@ -34,6 +34,7 @@
         <v-btn  v-else
         elevation="24"
         to="Home" 
+        @click="logout()"
         >
           <v-icon>mdi-logout</v-icon>
         </v-btn></v-col>
@@ -47,6 +48,7 @@
 </template>
 
 <script>
+import { AUTH_LOGOUT } from '../store/actions/auth';
 export default {
   name: "Nav",
   components: {
@@ -58,6 +60,12 @@ export default {
       loading: false
     };
   },
+  methods: {
+    logout() {
+      this.$store.dispatch(AUTH_LOGOUT);
+      this.$router.push("Login");
+    },
+  }
 };
 </script>
 

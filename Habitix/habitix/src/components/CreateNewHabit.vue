@@ -46,7 +46,7 @@ export default {
         }
     },
     methods: {
-        AddHabit() {
+        AddHabit(event) {
                 this.$axios({
                     method: "post",
                     url: "https://localhost:44312/api/Habit",
@@ -62,7 +62,7 @@ export default {
                          .catch(err => {
                         console.error(err);
 
-
+                this.$emit("clicked", "getHabits()")
 
 
                 //   this.$axios
