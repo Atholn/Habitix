@@ -12,7 +12,18 @@
             <div class="user-habit__follower-count">
                 <strong>Followers: </strong>{{ followers }}
             </div>
-            <v-switch input-value="true" v-model="hs" @click="getHabits()" >
+            <v-switch  v-model="hs" @click="getHabits()" >
+                    <!-- <template v-slot:label>
+                        Turn on the progress: <v-progress-circular
+                        :indeterminate="hs"
+                        :value="0"
+                        size="24"
+                        class="ml-2"
+                        ></v-progress-circular>
+                    </template>  -->
+      </v-switch>
+
+      <v-switch  v-model="hss" @click="hideShow()" >
                     <!-- <template v-slot:label>
                         Turn on the progress: <v-progress-circular
                         :indeterminate="hs"
@@ -39,6 +50,7 @@
                     :key="item.id"                   
                     :habit="item" 
                     :hide=hs
+                    :check="hs"
                     :imp="imp"
                 /> 
                 </div>
@@ -49,6 +61,7 @@
                     :key="item.id"                   
                     :habit="item" 
                     :hide=hs
+                    :check="hs"
                     :imp="imp"
                 /> 
                 </div>
@@ -61,7 +74,7 @@
         {{ h }}
 
         <CreateNewHabit
-        @clicked="clickChild"/>
+        />
          </div>
       
   </div>
@@ -85,10 +98,11 @@ export default {
       h:[],
       imp: "test",
       followers: 0,
-            hs: true, 
+            hs: false,
+             hss: false,  
             hab: [],
             ///------------
-          habitixUserInfo: {
+            habitixUserInfo: {
             userName: "",
             userRole: ""
               },     
@@ -117,11 +131,11 @@ export default {
   },
 
   methods: {
-    //   hideShow() {
-    //        console.log(this.hs)
-    //         this.hs = !this.hs;
-    //         console.log(this.hs)
-    //   },
+      hideShow() {
+            console.log(this.hss)
+            this.hss = !this.hss;
+            console.log(this.hss)
+      },
       Login11() {
       console.log(this.$store.getters.isAuthenticated)
       },
@@ -130,7 +144,7 @@ export default {
         this.$router.push("Login");
     },
      getHabits() {
-
+         
             this.h = [];     
             this.$axios
                 .get(`https://localhost:44312/api/Habit/UserHabits/${this.hs}`
@@ -144,7 +158,7 @@ export default {
                 .then((res) => {
                 
                 this.h = res.data;
-                console.info(res.data); 
+                //console.info(res.data); 
                 console.info(this.$store.getters.authStatus);
                 })
                 .catch((err) => {

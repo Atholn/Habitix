@@ -19,7 +19,7 @@
         </div>
 
         
-        <div v-else class="user-profile__habit" >
+        <div v-else class="user-profile__habit_pro" >
             <div class="habit-item__user">
                {{ habit.habitDescriptsion }}
             </div>
@@ -32,28 +32,40 @@
               value="yellow"
               hide-details
             />
+            
         </div>
+    <v-checkbox
+        v-model="checkbox"
+        
+        :label="`Checkbox 1: ${checkbox.toString()}`"
+        @click="updateDateInfo(30, checkbox.toString())"
+      ></v-checkbox>
 
-        <!-- <div v-for="date in hD" :key="date.id"> 
+      {{this.check}}
+
+      <!--  -->
+        <div v-for="date in hD" :key="date.id"> 
             <v-checkbox
 
-
-              label="yellow"
+                v-model="checkbox"
+                :label="`Checkbox 1: ${checkbox.toString()}`"
+              
               color="yellow"
               value="yellow"
               @click="dateInfo(date.id)"
               hide-details
               
             /> 
-           // {{date.id}}, {{date.habitId}}, {{date.startDateHabit}}      
+           id: {{date.id}}, habitID : {{date.habitId}}, date: {{date.dateOfHabit}}     
             <v-checkbox
         v-model="checkbox"
+        
         :label="`Checkbox 1: ${checkbox.toString()}`"
         @click="updateDateInfo(date.id, checkbox.toString())"
       ></v-checkbox>
-      </div> -->
+      </div> 
 
-                        <!-- <v-btn
+                         <!-- <v-btn
                   color="indigo darken-1"
                   @click="getHabitDate(habit.id)"
                   large>
@@ -77,6 +89,9 @@ export default {
         hide: {
             type: Boolean
         },
+        check: {
+            type: Boolean
+        },
         imp: {
             type: String,
         },
@@ -97,13 +112,13 @@ export default {
                 , {                  
                       headers: {
                           "Content-Type": "application/json",
-                          'Authorization': 'Bearer ' +localStorage.getItem('user-token'),
+                          'Authorization': 'Bearer ' + localStorage.getItem('user-token'),
                       }
                     })
                 .then((res) => {
-                    
+                
                 this.hD = res.data;
-                console.log( this.hD)
+                //console.log( this.hD)
                 })
                 .catch((err) => {
                 console.error(err);
@@ -119,7 +134,9 @@ export default {
             
         },
     mounted(){
-    this.getHabitDate(this.habit.id);
+        console.log(this.check)
+        this.checkbox = this.check;
+        this.getHabitDate(this.habit.id);
     },
 
     
@@ -149,7 +166,7 @@ export default {
          }
 
          .user-profile__habit_pro {
-        background-color: blue;
+        background-color: white;
     }
         .user-profile__habit {
         background-color: yellow;
