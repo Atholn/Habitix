@@ -7,6 +7,7 @@
             </div>
             <div class="habit-item_content">
                 {{ habit.habitName }}
+                {{ habit.startDateHabit }}
             </div>
              <v-checkbox            
               label="yellow"
@@ -33,7 +34,7 @@
             />
         </div>
 
-        <div v-for="date in hD" :key="date.id"> 
+        <!-- <div v-for="date in hD" :key="date.id"> 
             <v-checkbox
 
 
@@ -43,13 +44,14 @@
               @click="dateInfo(date.id)"
               hide-details
               
-            /> {{date.id}}, {{date.habitId}}, {{date.instanceData}}      
+            /> 
+           // {{date.id}}, {{date.habitId}}, {{date.startDateHabit}}      
             <v-checkbox
         v-model="checkbox"
         :label="`Checkbox 1: ${checkbox.toString()}`"
         @click="updateDateInfo(date.id, checkbox.toString())"
       ></v-checkbox>
-      </div>
+      </div> -->
 
                         <!-- <v-btn
                   color="indigo darken-1"
@@ -119,7 +121,7 @@ export default {
     mounted(){
     this.getHabitDate(this.habit.id);
     },
-    
+
     
 
 };
@@ -150,7 +152,7 @@ export default {
         background-color: blue;
     }
         .user-profile__habit {
-        background-color: red;
+        background-color: yellow;
                     .habit-item__user {
              font-weight: bold;
          }

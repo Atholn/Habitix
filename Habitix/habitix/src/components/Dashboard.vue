@@ -12,15 +12,15 @@
             <div class="user-habit__follower-count">
                 <strong>Followers: </strong>{{ followers }}
             </div>
-            <v-switch input-value="true" v-model="hs" @click="hideShow()" >
-                 <!-- <template v-slot:label>
-        Turn on the progress: <v-progress-circular
-          :indeterminate="hs"
-          :value="0"
-          size="24"
-          class="ml-2"
-        ></v-progress-circular>
-      </template>  -->
+            <v-switch input-value="true" v-model="hs" @click="getHabits()" >
+                    <!-- <template v-slot:label>
+                        Turn on the progress: <v-progress-circular
+                        :indeterminate="hs"
+                        :value="0"
+                        size="24"
+                        class="ml-2"
+                        ></v-progress-circular>
+                    </template>  -->
       </v-switch>
         </div>
             
@@ -42,9 +42,18 @@
                     :imp="imp"
                 /> 
                 </div>
-</div> 
+                </div> 
+                <div v-else>
+                    <HabitItem  
+                    v-for="item in h" 
+                    :key="item.id"                   
+                    :habit="item" 
+                    :hide=hs
+                    :imp="imp"
+                /> 
+                </div>
 
-                 <!-- @favorite="toggleFavorite"   -->
+                <!-- @favorite="toggleFavorite"   -->
                 <!--                               -->
         </div>
 
@@ -108,23 +117,23 @@ export default {
   },
 
   methods: {
-      hideShow() {
-          console.log(this.hs)
-            this.hs = !this.hs;
-            console.log(this.hs)
-      },
+    //   hideShow() {
+    //        console.log(this.hs)
+    //         this.hs = !this.hs;
+    //         console.log(this.hs)
+    //   },
       Login11() {
       console.log(this.$store.getters.isAuthenticated)
       },
     logout() {
       this.$store.dispatch(AUTH_LOGOUT);
-       this.$router.push("Login");
+        this.$router.push("Login");
     },
      getHabits() {
 
             this.h = [];     
             this.$axios
-                .get(`https://localhost:44312/UserHabits`
+                .get(`https://localhost:44312/api/Habit/UserHabits/${this.hs}`
                 , {                  
                       headers: {
 
@@ -135,7 +144,7 @@ export default {
                 .then((res) => {
                 
                 this.h = res.data;
-                // console.info(res.data); 
+                console.info(res.data); 
                 console.info(this.$store.getters.authStatus);
                 })
                 .catch((err) => {
