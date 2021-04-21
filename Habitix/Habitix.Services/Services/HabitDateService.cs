@@ -20,6 +20,16 @@ namespace Habitix.Services.Services
             _mapper = mapper;
         }
 
+        public async Task<IEnumerable<HabitDateRepresentation>> GetAllByHabitId(long id)
+        {
+            return _mapper.Map<List<HabitDateRepresentation>>(await _habitDateRepository.GetAllByHabitId(id));
+        }
+
+        public async Task<HabitDateRepresentation> GetLastByHabitId(long id)
+        {
+            return _mapper.Map<HabitDateRepresentation>(await _habitDateRepository.GetLastByHabitId(id));
+        }
+
         public async Task CreateByHabitId(HabitDateRepresentation habitDateRepresentation)
         {
             if (habitDateRepresentation == null)
@@ -30,17 +40,17 @@ namespace Habitix.Services.Services
             HabitDate habitDate = _mapper.Map<HabitDate>(habitDateRepresentation);
             //habitDate.UserId = userId;
             await _habitDateRepository.CreateAsync(habitDate);
-
         }
 
-        public async Task<IEnumerable<HabitDateRepresentation>> GetAllByHabitId(long id)
+        public async Task Update(HabitDateRepresentation habitDateRepresentation)
         {
-            return _mapper.Map<List<HabitDateRepresentation>>(await _habitDateRepository.GetAllByHabitId(id));
-        }
+            if (habitDateRepresentation == null)
+            {
+                throw new Exception($"No habit");
+            }
 
-        public async Task<HabitDateRepresentation> GetLastByHabitId(long id)
-        {
-            return _mapper.Map<HabitDateRepresentation>(await _habitDateRepository.GetLastByHabitId(id));
+            HabitDate habitDate = _mapper.Map<HabitDate>(habitDateRepresentation);
+            await _habitDateRepository.UpdateAsync(habitDate);
         }
     }
 }

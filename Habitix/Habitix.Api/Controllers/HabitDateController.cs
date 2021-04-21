@@ -40,7 +40,6 @@ namespace Habitix.Api.Controllers
 
 
         [HttpPost]
-        [Authorize]
         [SwaggerOperation(Summary = "Create new habit Date")]
         public async Task<ActionResult> Create([FromBody] HabitDateRepresentation request)
         {
@@ -52,6 +51,16 @@ namespace Habitix.Api.Controllers
             return Created($"api/[controller]", Ok());
         }
 
+        [HttpPut]
+        public async Task<ActionResult> Update([FromBody] HabitDateRepresentation request)
+        {
+            await _habitDateService.Update(request);
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            return NoContent();
+        }
 
     }
 }

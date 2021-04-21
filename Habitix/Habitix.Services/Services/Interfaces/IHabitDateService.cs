@@ -11,5 +11,6 @@ namespace Habitix.Services.Services.Interfaces
         Task<IEnumerable<HabitDateRepresentation>> GetAllByHabitId(long id);
         Task<HabitDateRepresentation> GetLastByHabitId(long id);
         Task CreateByHabitId(HabitDateRepresentation habitDateRepresentation);
+        Task Update(HabitDateRepresentation habitDateRepresentation);
     }
 }
