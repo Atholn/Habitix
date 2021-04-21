@@ -23,16 +23,6 @@
                     </template>  -->
       </v-switch>
 
-      <v-switch  v-model="hss" @click="hideShow()" >
-                    <!-- <template v-slot:label>
-                        Turn on the progress: <v-progress-circular
-                        :indeterminate="hs"
-                        :value="0"
-                        size="24"
-                        class="ml-2"
-                        ></v-progress-circular>
-                    </template>  -->
-      </v-switch>
         </div>
             
 
@@ -99,7 +89,7 @@ export default {
       imp: "test",
       followers: 0,
             hs: false,
-             hss: false,  
+            
             hab: [],
             ///------------
             habitixUserInfo: {
@@ -127,7 +117,7 @@ export default {
   mounted() {
      this.getHabits();
                 ///----
-                this.getHabitixUserInfo();
+     this.getHabitixUserInfo();
   },
 
   methods: {

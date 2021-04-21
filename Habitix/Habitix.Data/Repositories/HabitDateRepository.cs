@@ -21,6 +21,17 @@ namespace Habitix.Data.Repositories
                         .Where(x => x.HabitId == id)
                         .ToListAsync();
         }
+
+        public async Task<HabitDate> GetLastByHabitId(long id)
+        {
+            return await _context.HabitsDates
+                        .Where(
+                        x => x.HabitId == id 
+                        && x.DateOfHabit.Date == DateTime.UtcNow.Date
+                        )
+                        .FirstOrDefaultAsync();
+        }
+
         public async Task CreateByHabitId(HabitDate habitDate)
         {
             if (habitDate is null)

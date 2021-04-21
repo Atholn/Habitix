@@ -9,6 +9,7 @@ namespace Habitix.Services.Services.Interfaces
     public interface IHabitDateService
     {
         Task<IEnumerable<HabitDateRepresentation>> GetAllByHabitId(long id);
+        Task<HabitDateRepresentation> GetLastByHabitId(long id);
         Task CreateByHabitId(HabitDateRepresentation habitDateRepresentation);
     }
 }

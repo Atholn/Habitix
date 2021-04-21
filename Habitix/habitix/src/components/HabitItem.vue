@@ -3,11 +3,12 @@
     <div class="habit-item" @click="favoriteMessage(habit.id)">
         <div class="user-profile__habit_pro"  v-if="habit.id == favoriteMessageId" >
             <div class="habit-item__user">
+                {{habit.id}}
                 {{ habit.habitDescription }}
             </div>
             <div class="habit-item_content">
                 {{ habit.habitName }}
-                {{ habit.startDateHabit }}
+                
             </div>
              <v-checkbox            
               label="yellow"
@@ -21,6 +22,7 @@
         
         <div v-else class="user-profile__habit_pro" >
             <div class="habit-item__user">
+                   {{habit.id}}
                {{ habit.habitDescriptsion }}
             </div>
             <div class="habit-item_content">
@@ -38,13 +40,13 @@
         v-model="checkbox"
         
         :label="`Checkbox 1: ${checkbox.toString()}`"
-        @click="updateDateInfo(30, checkbox.toString())"
+        @click="updateDateInfo(habitDateInfo.id, checkbox.toString())"
       ></v-checkbox>
 
       {{this.check}}
-
+        {{this.habitDateInfo}}
       <!--  -->
-        <div v-for="date in hD" :key="date.id"> 
+        <!-- <div v-for="date in hD" :key="date.id"> 
             <v-checkbox
 
                 v-model="checkbox"
@@ -63,7 +65,7 @@
         :label="`Checkbox 1: ${checkbox.toString()}`"
         @click="updateDateInfo(date.id, checkbox.toString())"
       ></v-checkbox>
-      </div> 
+      </div>  -->
 
                          <!-- <v-btn
                   color="indigo darken-1"
@@ -82,6 +84,7 @@ export default {
         return {
         favoriteMessageId: 0,
         hD :[],
+        habitDateInfo: [],
         checkbox: false,
         }
     },
@@ -124,19 +127,46 @@ export default {
                 console.error(err);
                 });           
             },
+           
+            updateDateInfo(id, isClicked ){
+                  
+            this.habitDateInfo.ifHabitDone = ! this.habitDateInfo.ifHabitDone;
+
+
+            
+            console.log(id + isClicked)
+            },
+
+            getLast(id){
+                console.log(id);
+                this.habitDateInfo = [];   
+                this.$axios
+                .get(`https://localhost:44312/api/HabitDate/Last/${id}`
+                , {                  
+                      headers: {
+                          "Content-Type": "application/json",
+                          'Authorization': 'Bearer ' + localStorage.getItem('user-token'),
+                      }
+                    })
+                .then((res) => {           
+                this.habitDateInfo = res.data;
+                //console.log( this.habitDateInfo)
+                })
+                .catch((err) => {
+                console.error(err);
+                });            
+            },
+
+            //--------------------
             dateInfo(id){
                 console.log("you clicked date about id:" + id)
             },
-            updateDateInfo(id, isClicked ){
-                    // this.hDUpdate = 
-                    console.log(id + isClicked)
-            }
             
         },
     mounted(){
-        console.log(this.check)
         this.checkbox = this.check;
         this.getHabitDate(this.habit.id);
+        this.getLast(this.habit.id);
     },
 
     

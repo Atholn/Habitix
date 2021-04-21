@@ -50,7 +50,7 @@ namespace Habitix.Data.Repositories
                 )      
                 .Select(x=> new Habit
                 {
-                    Id = x.Id,
+                    Id = x.Habit.Id,
                     HabitName = x.Habit.HabitName,
                     HabitDescription = x.Habit.HabitDescription,
                     StartDateHabit = x.Habit.StartDateHabit,

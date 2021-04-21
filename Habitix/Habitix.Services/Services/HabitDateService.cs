@@ -37,5 +37,10 @@ namespace Habitix.Services.Services
         {
             return _mapper.Map<List<HabitDateRepresentation>>(await _habitDateRepository.GetAllByHabitId(id));
         }
+
+        public async Task<HabitDateRepresentation> GetLastByHabitId(long id)
+        {
+            return _mapper.Map<HabitDateRepresentation>(await _habitDateRepository.GetLastByHabitId(id));
+        }
     }
 }
