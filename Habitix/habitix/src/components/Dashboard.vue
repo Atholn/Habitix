@@ -1,5 +1,7 @@
 <template>
+
 <v-container fluid>
+
   <div class="stats">
   <div>  
     <div class="user-habit">
@@ -26,7 +28,7 @@
         </div>
             
 
-        <div class ="user-habit__habits " > 
+        <div class ="user-habit__habits "  > 
 
 
                 <div v-if="hs" >
@@ -42,17 +44,20 @@
                     :hide=hs
                     :check="hs"
                     :imp="imp"
+                   
                 /> 
                 </div>
                 </div> 
                 <div v-else>
                     <HabitItem  
                     v-for="item in h" 
+                    
                     :key="item.id"                   
                     :habit="item" 
                     :hide=hs
                     :check="hs"
                     :imp="imp"
+                    
                 /> 
                 </div>
 
@@ -63,9 +68,11 @@
 
         {{ h }}
 
-        <CreateNewHabit
-        />
+        <CreateNewHabit />
+        <h1>{{title}} </h1>
+        <HabitITest v-on:changeTitle="updateTitleText($event)"/>
          </div>
+           
       
   </div>
   </div>  
@@ -77,13 +84,15 @@
 import { AUTH_LOGOUT } from '../store/actions/auth';
 import HabitItem from './HabitItem.vue';
 import CreateNewHabit from './CreateNewHabit.vue';
+import HabitITest from './Test/HabitITest';
 
 export default {
-  components: { HabitItem , CreateNewHabit},
+  components: { HabitItem , CreateNewHabit, HabitITest},
   name: 'Dashboard',
 
     data() {
     return {
+        title: "Child to parent data",
       icons: ["mdi-facebook", "mdi-twitter", "mdi-linkedin", "mdi-instagram"],
       h:[],
       imp: "test",
@@ -105,6 +114,16 @@ export default {
                console.log(`${this.user.username} has gainted a follower!`)
            } 
         },
+        h(val, old) {
+             {
+               console.log("sada" + val + "asdas");
+             //  this.h : [];
+             this.h = val;
+               
+            }
+        }
+
+        
 
     },
     computed: {
@@ -121,6 +140,16 @@ export default {
   },
 
   methods: {
+      updateTitleText(title){
+          this.title=title;
+      },
+      testEventEvent(title){
+          console.log("test bichys "+ title );
+           this.getHabits();
+      },
+      changeTitle (){
+          this.$emit('asd', 'dsa');
+      },
       hideShow() {
             console.log(this.hss)
             this.hss = !this.hss;

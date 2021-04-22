@@ -122,6 +122,7 @@ export default {
                 
                 this.hD = res.data;
                 //console.log( this.hD)
+                
                 })
                 .catch((err) => {
                 console.error(err);
@@ -129,12 +130,22 @@ export default {
             },
            
             updateDateInfo(id, isClicked ){
-                  
+                  this.$emit('testEvent');
             this.habitDateInfo.ifHabitDone = ! this.habitDateInfo.ifHabitDone;
 
+             this.$axios
+            .put(`https://localhost:44312/api/HabitDate`, this.habitDateInfo)
+            .then(res => {
+                // console.log("Update!")
+                // console.log(res.data)
+            })
+             .catch(err => {
+                console.error(err);
+             });
 
-            
             console.log(id + isClicked)
+            //  this.$parent.getHabits();
+            
             },
 
             getLast(id){
@@ -168,6 +179,9 @@ export default {
         this.getHabitDate(this.habit.id);
         this.getLast(this.habit.id);
     },
+    watch: {
+
+    }
 
     
 
