@@ -106,8 +106,6 @@ methods: {
           console.error(err);
         });
     },
-    
-    
     }
 }
 </script>

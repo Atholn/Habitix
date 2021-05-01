@@ -25,7 +25,7 @@
                     </template>  -->
       </v-switch>
 
-        </div>
+    </div>
             
 
         <div class ="user-habit__habits "  > 
@@ -169,7 +169,6 @@ export default {
                 .get(`https://localhost:44312/api/Habit/UserHabits/${this.hs}`
                 , {                  
                       headers: {
-
                           "Content-Type": "application/json",
                           'Authorization': 'Bearer ' +localStorage.getItem('user-token'),
                       }
