@@ -7,9 +7,11 @@ import Habitix from "../views/Habitix.vue";
 import Login from "../views/Login.vue";
 import Register from "../views/Register.vue";
 import store from "../store/index"
+
+import Ap from "../components/Test/Ap.vue"
 import CreateNewAccount from "../views/CreateNewAccount.vue";
 import LoginToAccount from "../views/LoginToAccount.vue"
-import Ap from "../components/Test/Ap.vue"
+
 const ifNotAuthenticated = (to, from, next) => {
     if (!store.getters.isAuthenticated) {
       next();

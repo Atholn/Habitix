@@ -73,11 +73,7 @@ export default {
             email: "",
             password: ""
       },
-       user1: {            
-            userName: "dup11a",
-            email: "dupa@gmail.com",
-            password: "qazwsx1Q!"
-      },
+       
       habit : {
           habitName: "nauka prog",
             habitDescription: "Nauka programowania 30 k .NET ",
@@ -93,7 +89,7 @@ export default {
 
 methods: {
     Register() {
-        console.log("Register!")
+        // console.log("Register!")
         this.$axios
             .post(`https://localhost:44312/api/Identity/RegisterUser`, this.user)
             .then(res => {
@@ -102,7 +98,7 @@ methods: {
              .catch(err => {
           console.error(err);
         });
-        console.log("Register2!")
+        // console.log("Register2!")
         // this.$axios
         //     .post(`https://localhost:44312/api/Habit`, this.habit)
         //     .then(res => {

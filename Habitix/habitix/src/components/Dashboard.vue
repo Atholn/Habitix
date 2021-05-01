@@ -38,7 +38,9 @@
 
                 <div v-else> 
                 <HabitItem  
-                    v-for="item in h" 
+                     v-for="(item, index) in h" 
+                    :class="index % 3 === 1 ? 'mb-6' : ''"
+
                     :key="item.id"                   
                     :habit="item" 
                     :hide=hs
@@ -50,14 +52,13 @@
                 </div> 
                 <div v-else>
                     <HabitItem  
-                    v-for="item in h" 
-                    
+                    v-for="(item, index) in h" 
+                    :class="index % 3 == 2 ? 'mb-6' : ''"
                     :key="item.id"                   
                     :habit="item" 
                     :hide=hs
                     :check="hs"
-                    :imp="imp"
-                    
+                    :imp="imp"                   
                 /> 
                 </div>
 
@@ -75,6 +76,25 @@
            
       
   </div>
+  <v-row
+      v-for="n in 5"
+      :key="n"
+      :class="n === 1 ? 'mb-6' : ''"
+      no-gutters
+    >
+      <v-col
+        v-for="k in n + 1"
+        :key="k"
+      >
+        <v-card
+          class="pa-2"
+          outlined
+          tile
+        >
+          {{ k }} of {{ n + 1 }}
+        </v-card>
+      </v-col>
+    </v-row>
   </div>  
     </v-container> 
 </template>
