@@ -1,8 +1,5 @@
 <template>
-
 <v-container fluid>
-
-  <div class="stats">
   <div>  
     <div class="user-habit">
         <div class ="user-habit__user-panel">
@@ -14,89 +11,50 @@
             <div class="user-habit__follower-count">
                 <strong>Followers: </strong>{{ followers }}
             </div>
-            <v-switch  v-model="hs" @click="getHabits()" >
-                    <!-- <template v-slot:label>
-                        Turn on the progress: <v-progress-circular
-                        :indeterminate="hs"
-                        :value="0"
-                        size="24"
-                        class="ml-2"
-                        ></v-progress-circular>
-                    </template>  -->
-      </v-switch>
-
-    </div>
+            <v-switch  v-model="hs" @click="getHabits()">
+            </v-switch>
+        </div>
             
-
-        <div class ="user-habit__habits "  > 
-
-
-                <div v-if="hs" >
-                    
-                <div v-if="h === []"> 
-                Lista pusta !  </div>
-
-                <div v-else> 
-                <HabitItem  
-                     v-for="(item, index) in h" 
-                    :class="index % 3 === 1 ? 'mb-6' : ''"
-
-                    :key="item.id"                   
-                    :habit="item" 
-                    :hide=hs
-                    :check="hs"
-                    :imp="imp"
-                   
-                /> 
-                </div>
+        <div class ="user-habit__habits" > 
+                <div v-if="hs" >            
+                    <div v-if="h === []"> Lista pusta !  </div>
+                    <div v-else>                        
+                        <HabitItem    
+                          
+                        v-for="item in h" 
+                        :key="item.id"                   
+                        :habit="item" 
+                        :hide=hs
+                        :check="hs"
+                        :imp="imp"
+                        />                   
+                    </div>
                 </div> 
+
                 <div v-else>
+                    <div v-if="h === []"> Lista pusta !  </div>
+                    <div v-else> 
                     <HabitItem  
-                    v-for="(item, index) in h" 
-                    :class="index % 3 == 2 ? 'mb-6' : ''"
+                    v-for="item in h" 
+                    
                     :key="item.id"                   
                     :habit="item" 
                     :hide=hs
                     :check="hs"
                     :imp="imp"                   
-                /> 
+                    /> 
+                    </div>
                 </div>
-
-                <!-- @favorite="toggleFavorite"   -->
-                <!--                               -->
+                
         </div>
 
-
-        {{ h }}
-
-        <CreateNewHabit />
-        <h1>{{title}} </h1>
-        <HabitITest v-on:changeTitle="updateTitleText($event)"/>
-         </div>
-           
-      
-  </div>
-  <v-row
-      v-for="n in 5"
-      :key="n"
-      :class="n === 1 ? 'mb-6' : ''"
-      no-gutters
-    >
-      <v-col
-        v-for="k in n + 1"
-        :key="k"
-      >
-        <v-card
-          class="pa-2"
-          outlined
-          tile
-        >
-          {{ k }} of {{ n + 1 }}
-        </v-card>
-      </v-col>
-    </v-row>
-  </div>  
-    </v-container> 
+       
+     
+    </div> 
+    <div class="create_new"> <CreateNewHabit/></div>
+    <div> </div>
+  </div> 
+</v-container> 
 </template>
 
 
@@ -104,15 +62,14 @@
 import { AUTH_LOGOUT } from '../store/actions/auth';
 import HabitItem from './HabitItem.vue';
 import CreateNewHabit from './CreateNewHabit.vue';
-import HabitITest from './Test/HabitITest';
 
 export default {
-  components: { HabitItem , CreateNewHabit, HabitITest},
+  components: { HabitItem , CreateNewHabit},
   name: 'Dashboard',
 
     data() {
     return {
-        title: "Child to parent data",
+      title: "Child to parent data",
       icons: ["mdi-facebook", "mdi-twitter", "mdi-linkedin", "mdi-instagram"],
       h:[],
       imp: "test",
@@ -254,63 +211,38 @@ export default {
    
     .user-habit {
         display: grid;
-        grid-template-columns: 1fr 3fr;
+        grid-template-columns: 1fr 3fr ;
+
         width: 100%;
         padding: 50px 5%;
+        background-color: black;
 
-     .user-habit__user-panel {
+        .user-habit__user-panel {
         display: flex;
         flex-direction: column;
-        margin-right: 50px;
+        margin-right: 30px;
         padding: 20px;
         background-color: white;
         border-radius: 5px;
         border: 1px solid #DFE3E8;
         
-        h1 {
-            margin: 0;
-        }
-
-        .user-habit_admin-badge{
-            background-color: blue;
-            color:white;
-            border-radius: 5px;
-            margin-right: auto;
-            padding: 0 10px;
-            font-weight: bold;
-        }
-        
-        .user-habit_user-badge{
-            background-color: black;
-            color:white;
-            border-radius: 5px;
-            margin-right: auto;
-            padding: 0 10px;
-            font-weight: bold;
-        }
-
-        .user-habit__create-message { 
-            padding-top: 20px;
-            display: flex;
-            flex-direction: column;
-
-            &.--exceeded{
-                color: red;
-                border-color: red;
-
-                button {
-                    background-color: red;
-                    border: none;
-                    color: white;
-                }
-            }
-          }
-        }  
 
         .user-habit__habits {
             display: grid;
             grid-gap: 10px;
+            grid-template-columns: 2fr 2fr 2fr;
         }
+        h1 {
+            margin: 0;
+        }
+        }  
+
+
     }
+    .create_new{
+            width: 100%; 
+             margin-right: 50px;
+             padding: 50px 5%;
+        }
 
 </style>

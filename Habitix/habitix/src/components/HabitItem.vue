@@ -1,5 +1,4 @@
 <template>
-
     <div class="habit-item" @click="favoriteMessage(habit.id)">
         <div class="user-profile__habit_pro"  v-if="habit.id == favoriteMessageId" >
             <div class="habit-item__user">
@@ -193,11 +192,12 @@ export default {
         padding: 20px;
         background-color: white;
         border-radius: 5px;
-        border: 1px solid #DFE3E8;
+        border: 1px solid #0073ff;
         box-sizing: border-box;
         cursor: pointer;
         transition: all 0.25s ease;
-        width: 50%;
+       
+        
 
         &:hover{
              transform: scale(1.1, 1.1);
