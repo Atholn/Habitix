@@ -2,13 +2,12 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 import Dashboard from "../components/Dashboard.vue";
-import Profile from "../views/Test/Profile.vue";
 import Habitix from "../views/Habitix.vue";
 import Login from "../views/Login.vue";
 import Register from "../views/Register.vue";
+import HelloWorld from "../components/HelloWorld.vue"
 import store from "../store/index"
 
-import Ap from "../components/Test/Ap.vue"
 import CreateNewAccount from "../views/CreateNewAccount.vue";
 import LoginToAccount from "../views/LoginToAccount.vue"
 
@@ -54,32 +53,15 @@ const routes = [
     }, 
     //-----
     {
-        path: "/profile",
-        name: "Profile",
-        component: Profile,
-    },
-    {
         path: "/habitix",
         name: "Habitix",
         component: Habitix,
     },
-    //-----
     {
-      path: "/ap",
-      name: "ap",
-      component: Ap,
+      path: "/hello",
+      name: "hello",
+      component: HelloWorld,
     },
-
-    // {
-    //   path: "/CreateNewAccount",
-    //   name: "CreateNewAccount",
-    //   component: CreateNewAccount,
-    // },
-    // {
-    //   path: "/LoginToAccount",
-    //   name: "LoginToAccount",
-    //   component: LoginToAccount,
-    // },
 
     // otherwise redirect to home
     { path: '*', redirect: '/' }
