@@ -94,9 +94,7 @@ export default {
         check: {
             type: Boolean
         },
-        imp: {
-            type: String,
-        },
+       
         habit: {
             type: Object,
             required: true,

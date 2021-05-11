@@ -8,58 +8,48 @@
             </div>
             <div class="user-habit_user-badge" v-else>{{ habitixUserInfo.userRole }}
             </div>
-            <div class="user-habit__follower-count">
-                <strong>Followers: </strong>{{ followers }}
-            </div>
-            <v-switch  v-model="hs" @click="getHabits()">
+            <v-switch  v-model="habitsHS" @click="getHabits()">
             </v-switch>
         </div>
             
         <div class ="user-habit__habits" > 
-                <div v-if="hs" >            
-                    <div v-if="h === []"> Lista pusta !  </div>
+                <div v-if="habitsHS" >            
+                    <div v-if="habits === []"> Lista pusta !  </div>
                     <div v-else>                        
-                        <HabitItem    
-                          
-                        v-for="item in h" 
+                        <HabitItem                             
+                        v-for="item in habits" 
                         :key="item.id"                   
                         :habit="item" 
-                        :hide=hs
-                        :check="hs"
-                        :imp="imp"
+                        :hide=habitsHS
+                        :check="habitsHS"
                         />                   
                     </div>
                 </div> 
 
                 <div v-else>
-                    <div v-if="h === []"> Lista pusta !  </div>
-                    <div v-else> 
-                    <HabitItem  
-                    v-for="item in h" 
-                    
-                    :key="item.id"                   
-                    :habit="item" 
-                    :hide=hs
-                    :check="hs"
-                    :imp="imp"                   
-                    /> 
-                    </div>
-                </div>
-                
+                    <div v-if="habits === []"> Lista pusta !  </div>
+                        <div v-else> 
+                        <HabitItem  
+                        v-for="item in habits"           
+                        :key="item.id"                   
+                        :habit="item" 
+                        :hide=habitsHS
+                        :check="habitsHS"                      
+                        /> 
+                        </div>
+                </div>           
         </div>
 
-       
-     
     </div> 
+    
     <div class="create_new"> <CreateNewHabit/></div>
-    <div> </div>
+    
   </div> 
 </v-container> 
 </template>
 
 
 <script>
-import { AUTH_LOGOUT } from '../store/actions/auth';
 import HabitItem from './HabitItem.vue';
 import CreateNewHabit from './CreateNewHabit.vue';
 
@@ -69,141 +59,63 @@ export default {
 
     data() {
     return {
-      title: "Child to parent data",
-      icons: ["mdi-facebook", "mdi-twitter", "mdi-linkedin", "mdi-instagram"],
-      h:[],
-      imp: "test",
-      followers: 0,
-            hs: false,
-            
-            hab: [],
-            ///------------
+            icons: ["mdi-facebook", "mdi-twitter", "mdi-linkedin", "mdi-instagram"],
+            habits:[],
+            habitsHS: false, 
             habitixUserInfo: {
             userName: "",
             userRole: ""
-              },     
-    };
-  },
-
-  watch: {
-        followers(newFollowerCunt, oldFollowerCount){
-           if(oldFollowerCount  < newFollowerCunt) {
-               console.log(`${this.user.username} has gainted a follower!`)
-           } 
-        },
-        h(val, old) {
-             {
-               console.log("sada" + val + "asdas");
-             //  this.h : [];
-             this.h = val;
-               
-            }
-        }
-
-        
-
-    },
-    computed: {
-        newMessageCharacterCount() {
-            return this.newMessageContent.length;
-        },
-       
+            },     
+        };
     },
 
-  mounted() {
+    watch: {
+    },
+
+    computed: {       
+    },
+
+    mounted() {
      this.getHabits();
-                ///----
      this.getHabitixUserInfo();
-  },
-
-  methods: {
-      updateTitleText(title){
-          this.title=title;
-      },
-      testEventEvent(title){
-          console.log("test bichys "+ title );
-           this.getHabits();
-      },
-      changeTitle (){
-          this.$emit('asd', 'dsa');
-      },
-      hideShow() {
-            console.log(this.hss)
-            this.hss = !this.hss;
-            console.log(this.hss)
-      },
-      Login11() {
-      console.log(this.$store.getters.isAuthenticated)
-      },
-    logout() {
-      this.$store.dispatch(AUTH_LOGOUT);
-        this.$router.push("Login");
     },
-     getHabits() {
-         
-            this.h = [];     
+
+    methods: {
+        getHabits() {    
+            this.habits = [];     
             this.$axios
-                .get(`https://localhost:44312/api/Habit/UserHabits/${this.hs}`
+                .get(`https://localhost:44312/api/Habit/UserHabits/${this.habitsHS}`
                 , {                  
-                      headers: {
-                          "Content-Type": "application/json",
-                          'Authorization': 'Bearer ' +localStorage.getItem('user-token'),
-                      }
+                        headers: {
+                            "Content-Type": "application/json",
+                            'Authorization': 'Bearer ' +localStorage.getItem('user-token'),
+                        }
                     })
-                .then((res) => {
-                
-                this.h = res.data;
-                //console.info(res.data); 
-                console.info(this.$store.getters.authStatus);
+                .then((res) => {           
+                this.habits = res.data;
                 })
                 .catch((err) => {
                 console.error(err);
-                }); 
-                
-                // console.info(this.h);   
-                console.info(localStorage.getItem('user-token'));              
-            },
-
-        followUser() {
-            this.followers++
+                });         
         },
 
-        toggleFavorite(id) {
-            console.log(`Favourited mess #${id}`);
-        },
-        createNewMessage() {
-            if (this.newMessageContent && this.messageTypes !== 'draft') {
-                this.user.messeges.unshift({
-                    id: this.user.messeges.length +1,
-                    content: this.newMessageContent,
+        getHabitixUserInfo() {
+            this.$axios   
+            .get(`https://localhost:44312/api/HabitixUser/UserInfo`, {
+                    headers: {
+                        "Content-Type": "application/json",
+                        'Authorization': 'Bearer ' + localStorage.getItem('user-token'),
+                    }
                 })
-                this.newMessageContent = '';
-            }
-        },
-
-            //--------------
-            getHabitixUserInfo() {
-
-                this.$axios   
-                .get(`https://localhost:44312/api/HabitixUser/UserInfo`, {        
-
-                      headers: {
-                          "Content-Type": "application/json",
-                          'Authorization': 'Bearer ' + localStorage.getItem('user-token'),
-                      }
-                    })
-                .then((res) => {
-                this.habitixUserInfo = res.data;
-
-                })
-                .catch((err) => {
-                console.error(err);
-                });       
-            }
-            
+            .then((res) => {
+            this.habitixUserInfo = res.data;
+            })
+            .catch((err) => {
+            console.error(err);
+            });       
+        }            
   },
 }
-
 
 </script>
 
@@ -212,7 +124,6 @@ export default {
     .user-habit {
         display: grid;
         grid-template-columns: 1fr 3fr ;
-
         width: 100%;
         padding: 50px 5%;
         background-color: black;
@@ -225,24 +136,42 @@ export default {
         background-color: white;
         border-radius: 5px;
         border: 1px solid #DFE3E8;
-        
+        }
 
         .user-habit__habits {
             display: grid;
             grid-gap: 10px;
             grid-template-columns: 2fr 2fr 2fr;
         }
+
         h1 {
             margin: 0;
         }
-        }  
 
+        .user-habit_admin-badge{
+            background-color: blue;
+            color:white;
+            border-radius: 5px;
+            margin-right: auto;
+            padding: 0 10px;
+            font-weight: bold;
+        }
+
+        .user-habit_user-badge{
+            background-color: black;
+            color:white;
+            border-radius: 5px;
+            margin-right: auto;
+            padding: 0 10px;
+            font-weight: bold;
+        }
 
     }
+
     .create_new{
             width: 100%; 
              margin-right: 50px;
              padding: 50px 5%;
-        }
+    }
 
 </style>
