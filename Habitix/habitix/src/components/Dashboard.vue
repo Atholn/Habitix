@@ -20,7 +20,6 @@
                         v-for="item in habits" 
                         :key="item.id"                   
                         :habit="item" 
-                        :hide=habitsHS
                         :check="habitsHS"
                         />                   
                     </div>
@@ -28,22 +27,20 @@
 
                 <div v-else>
                     <div v-if="habits === []"> Lista pusta !  </div>
-                        <div v-else> 
+                    <div v-else> 
                         <HabitItem  
                         v-for="item in habits"           
                         :key="item.id"                   
                         :habit="item" 
-                        :hide=habitsHS
                         :check="habitsHS"                      
                         /> 
-                        </div>
+                    </div>
                 </div>           
         </div>
-
     </div> 
     
     <div class="create_new"> <CreateNewHabit/></div>
-    
+
   </div> 
 </v-container> 
 </template>
@@ -170,8 +167,8 @@ export default {
 
     .create_new{
             width: 100%; 
-             margin-right: 50px;
-             padding: 50px 5%;
+            margin-right: 50px;
+            padding: 50px 5%;
     }
 
 </style>
