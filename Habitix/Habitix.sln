@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Habitix.Data", "Habitix.Dat
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Habitix.Services", "Habitix.Services\Habitix.Services.csproj", "{46DE567B-7823-43AF-B22D-B2DB246A8264}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Habitix.Tests", "Habitix.Tests\Habitix.Tests.csproj", "{C63E6736-1187-4D79-949A-EE054CE67F5C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{46DE567B-7823-43AF-B22D-B2DB246A8264}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{46DE567B-7823-43AF-B22D-B2DB246A8264}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{46DE567B-7823-43AF-B22D-B2DB246A8264}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C63E6736-1187-4D79-949A-EE054CE67F5C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C63E6736-1187-4D79-949A-EE054CE67F5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C63E6736-1187-4D79-949A-EE054CE67F5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C63E6736-1187-4D79-949A-EE054CE67F5C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
