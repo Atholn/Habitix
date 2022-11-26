@@ -18,7 +18,7 @@ namespace Habitix.Data.Models
         public string UserId { get; set; }
 
 
-        public virtual HabitixUser HabitixUser { get; set; }
         public long HabitixUserId { get; set; }       
+        public virtual HabitixUser HabitixUser { get; set; }
     }
 }

@@ -8,8 +8,6 @@ import Register from "../views/Register.vue";
 import HelloWorld from "../components/HelloWorld.vue"
 import store from "../store/index"
 
-import CreateNewAccount from "../views/CreateNewAccount.vue";
-import LoginToAccount from "../views/LoginToAccount.vue"
 
 const ifNotAuthenticated = (to, from, next) => {
     if (!store.getters.isAuthenticated) {
